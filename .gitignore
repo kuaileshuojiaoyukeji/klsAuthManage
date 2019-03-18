@@ -1,0 +1,15 @@
+/.vs
+/KLS.AuthManage/bin
+/KLS.AuthManage.Component.Data/bin
+/KLS.AuthManage.Data.Model/bin
+/KLS.AuthManage.IService/bin
+/KLS.AuthManage.Service/bin
+/KLS.AuthManage.Tests/bin
+/KLS.AuthManage/obj
+/KLS.AuthManage.Component.Data/obj
+/KLS.AuthManage.Component.Tools/obj
+/KLS.AuthManage.Data.Model/obj
+/KLS.AuthManage.IService/obj
+/KLS.AuthManage.Service/obj
+/KLS.AuthManage.Tests/obj
+/KLS.AuthManage.Component.Tools/bin

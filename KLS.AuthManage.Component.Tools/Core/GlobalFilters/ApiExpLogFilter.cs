@@ -25,7 +25,7 @@ namespace KLS.AuthManage.Component.Tools.Core.GlobalFilters
             if (ex.Name == "DbUpdateConcurrencyException")
             {
                 var e = filterContext.Exception as DbUpdateConcurrencyException;
-                //并发处理
+                //测试版本并发处理
                 //e.Entries.Single().Reload();
                 var entry = e.Entries.Single();
                 var databaseEntry = entry.GetDatabaseValues();
@@ -50,7 +50,6 @@ namespace KLS.AuthManage.Component.Tools.Core.GlobalFilters
         public JsonResult Failure(string _msg = "操作失败")
         {
             return null;
-            //return Json(new { Success = false, Msg = string.IsNullOrEmpty(_errorMsg) ? _msg : _errorMsg });
         }
     }
 }
