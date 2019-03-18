@@ -1,0 +1,61 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.438
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KLS.AuthManage.WebApi", "KLS.AuthManage\KLS.AuthManage.WebApi.csproj", "{F4FA5C6F-1E72-4400-B986-DF6A13A23F46}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KLS.AuthManage.Tests", "KLS.AuthManage.Tests\KLS.AuthManage.Tests.csproj", "{74591D10-F36D-47F7-973D-F7DEA43EBEE1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KLS.AuthManage.Component.Data", "KLS.AuthManage.Component.Data\KLS.AuthManage.Component.Data.csproj", "{42CA0717-230A-427C-A5FC-4C4C762855D7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KLS.AuthManage.Component.Tools", "KLS.AuthManage.Component.Tools\KLS.AuthManage.Component.Tools.csproj", "{CEE4A1F3-A74A-414B-9BE2-2654600B1836}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KLS.AuthManage.Data.Model", "KLS.AuthManage.Data.Model\KLS.AuthManage.Data.Model.csproj", "{209FFF10-8812-4A6B-9426-71CA815269FA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KLS.AuthManage.IService", "KLS.AuthManage.IService\KLS.AuthManage.IService.csproj", "{0500C599-65B9-424E-B800-83C8B8FBDB58}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KLS.AuthManage.Service", "KLS.AuthManage.Service\KLS.AuthManage.Service.csproj", "{5AD7F662-EDF2-404E-8A5A-BC3660DCD4AF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F4FA5C6F-1E72-4400-B986-DF6A13A23F46}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F4FA5C6F-1E72-4400-B986-DF6A13A23F46}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F4FA5C6F-1E72-4400-B986-DF6A13A23F46}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F4FA5C6F-1E72-4400-B986-DF6A13A23F46}.Release|Any CPU.Build.0 = Release|Any CPU
+		{74591D10-F36D-47F7-973D-F7DEA43EBEE1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{74591D10-F36D-47F7-973D-F7DEA43EBEE1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{74591D10-F36D-47F7-973D-F7DEA43EBEE1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{74591D10-F36D-47F7-973D-F7DEA43EBEE1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{42CA0717-230A-427C-A5FC-4C4C762855D7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{42CA0717-230A-427C-A5FC-4C4C762855D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{42CA0717-230A-427C-A5FC-4C4C762855D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{42CA0717-230A-427C-A5FC-4C4C762855D7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CEE4A1F3-A74A-414B-9BE2-2654600B1836}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CEE4A1F3-A74A-414B-9BE2-2654600B1836}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CEE4A1F3-A74A-414B-9BE2-2654600B1836}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CEE4A1F3-A74A-414B-9BE2-2654600B1836}.Release|Any CPU.Build.0 = Release|Any CPU
+		{209FFF10-8812-4A6B-9426-71CA815269FA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{209FFF10-8812-4A6B-9426-71CA815269FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{209FFF10-8812-4A6B-9426-71CA815269FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{209FFF10-8812-4A6B-9426-71CA815269FA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0500C599-65B9-424E-B800-83C8B8FBDB58}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0500C599-65B9-424E-B800-83C8B8FBDB58}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0500C599-65B9-424E-B800-83C8B8FBDB58}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0500C599-65B9-424E-B800-83C8B8FBDB58}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5AD7F662-EDF2-404E-8A5A-BC3660DCD4AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5AD7F662-EDF2-404E-8A5A-BC3660DCD4AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5AD7F662-EDF2-404E-8A5A-BC3660DCD4AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5AD7F662-EDF2-404E-8A5A-BC3660DCD4AF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C5496007-AC70-4A95-9C9A-2C63279671B2}
+	EndGlobalSection
+EndGlobal
