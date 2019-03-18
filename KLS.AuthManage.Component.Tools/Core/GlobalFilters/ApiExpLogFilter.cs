@@ -28,6 +28,7 @@ namespace KLS.AuthManage.Component.Tools.Core.GlobalFilters
                 //测试版本并发处理  
                 //e.Entries.Single().Reload();
                 //测试地址版本测试
+                //继续测试测试地址001
                 var entry = e.Entries.Single();
                 var databaseEntry = entry.GetDatabaseValues();
                 if (databaseEntry == null)
