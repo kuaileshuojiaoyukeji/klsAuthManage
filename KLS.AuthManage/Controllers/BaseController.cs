@@ -9,6 +9,7 @@ using System.Web.Mvc;
 
 namespace KLS.AuthManage.Controllers
 {
+    //基类Controller
     public class BaseController : ApiController
     {
     }
