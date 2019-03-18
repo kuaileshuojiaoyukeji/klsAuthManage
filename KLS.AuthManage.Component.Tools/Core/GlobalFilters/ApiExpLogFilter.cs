@@ -25,8 +25,9 @@ namespace KLS.AuthManage.Component.Tools.Core.GlobalFilters
             if (ex.Name == "DbUpdateConcurrencyException")
             {
                 var e = filterContext.Exception as DbUpdateConcurrencyException;
-                //测试版本并发处理
+                //测试版本并发处理  
                 //e.Entries.Single().Reload();
+                //测试地址版本测试
                 var entry = e.Entries.Single();
                 var databaseEntry = entry.GetDatabaseValues();
                 if (databaseEntry == null)
