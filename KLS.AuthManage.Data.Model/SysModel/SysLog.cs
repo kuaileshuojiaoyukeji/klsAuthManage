@@ -18,47 +18,47 @@ namespace KLS.AuthManage.Data.Model.SysModel
         public int ID { set; get; }
 
         [Display(Name = "请求用时")]
-        [StringLength(50)]
+        [StringLength(500)]
         public string Time_Stamp { set; get; }
 
         [Display(Name = "日志级别")]
-        [StringLength(20)]
+        [StringLength(50)]
         public string Level { set; get; }
 
         [Display(Name = "机器名")]
-        [StringLength(100)]
+        [StringLength(500)]
         public string Host { set; get; }
 
         [Display(Name = "日志类型")]
-        [StringLength(50)]
+        [StringLength(500)]
         public string type { set; get; }
 
         [Display(Name = "来源")]
-        [StringLength(200)]
+        [StringLength(8000)]
         public string source { set; get; }
 
         [Display(Name = "记录人")]
-        [StringLength(200)]
+        [StringLength(500)]
         public string logger { set; get; }
 
         [Display(Name = "控制器")]
-        [StringLength(200)]
+        [StringLength(500)]
         public string controller { set; get; }
 
         [Display(Name = "ACtion")]
-        [StringLength(200)]
+        [StringLength(500)]
         public string action { set; get; }
 
         [Display(Name = "操作人")]
-        [StringLength(200)]
+        [StringLength(500)]
         public string loggeruser { set; get; }
 
         [Display(Name = "参数")]
-        [StringLength(200)]
+        [StringLength(8000)]
         public string param { set; get; }
 
         [Display(Name = "日志内容")]
-        [StringLength(6000)]
+        [StringLength(8000)]
         public string message { set; get; }
 
         [Display(Name = "异常跟踪")]
