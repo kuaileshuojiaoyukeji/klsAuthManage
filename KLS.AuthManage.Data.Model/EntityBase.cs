@@ -35,13 +35,13 @@ namespace KLS.AuthManage.Data.Model
         /// 获取或设置 更新时间
         /// </summary>
         [DataType(DataType.DateTime)]
-        public DateTime UpdateDate { get; set; }
+        public DateTime? UpdateDate { get; set; }
 
         /// <summary>
         /// 获取或设置 添加时间
         /// </summary>
         [DataType(DataType.DateTime)]
-        public DateTime CreateDate { get; set; }
+        public DateTime? CreateDate { get; set; }
 
         /// <summary>
         /// 操作人编号
