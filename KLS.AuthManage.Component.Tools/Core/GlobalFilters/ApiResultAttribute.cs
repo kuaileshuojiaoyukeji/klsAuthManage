@@ -40,7 +40,6 @@ namespace KLS.AuthManage.Component.Tools.Core.GlobalFilters
             if (actionExecutedContext.Exception != null)
             {
                 #region Log02 错误日志记录
-                //这是dev版本
                 //log02 type=db
                 LogEventInfo ei = new LogEventInfo(LogLevel.Error, "", sb.ToString());
                 ei.Properties["stacktrace"] = actionExecutedContext.Exception.ExceptionStackTrace();
@@ -63,7 +62,6 @@ namespace KLS.AuthManage.Component.Tools.Core.GlobalFilters
                 if (!a.IsFaulted)
                 {
                     // 取得由 API 返回的资料
-                    //继续测试
                     result.Data = actionExecutedContext.ActionContext.Response.Content.ReadAsAsync<object>().Result;
                 }
                 //请求是否成功
