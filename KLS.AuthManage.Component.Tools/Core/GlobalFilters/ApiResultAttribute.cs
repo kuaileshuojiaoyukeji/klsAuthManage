@@ -46,14 +46,8 @@ namespace KLS.AuthManage.Component.Tools.Core.GlobalFilters
                     var e = actionExecutedContext.Exception as DbUpdateConcurrencyException;
                     var entry = e.Entries.Single();
                     var databaseEntry = entry.GetDatabaseValues();
-                    if (databaseEntry == null)
-                    {
-                        _errorMsg = "无法保存更改，系已经被其他用户删除.";
-                    }
-                    else
-                    {
-                        _errorMsg = "无法保存更改，当前记录已经被其他人更改.";
-                    }
+                    if (databaseEntry == null) { _errorMsg = "无法保存更改，系已经被其他用户删除."; }
+                    else { _errorMsg = "无法保存更改，当前记录已经被其他人更改."; }
                 }
                 #region Log02 错误日志记录
                 //log02 type=db
@@ -68,7 +62,6 @@ namespace KLS.AuthManage.Component.Tools.Core.GlobalFilters
                 result.StatusCode = HttpStatusCode.InternalServerError;//actionExecutedContext.ActionContext.Response.StatusCode;
                 result.IsSuccess = false;
                 result.ErrorMsg = _errorMsg;//前端隐藏错误信息 
-                //result.ErrorMsg = actionExecutedContext.Exception.Message;
             }
             else
             {
@@ -92,11 +85,6 @@ namespace KLS.AuthManage.Component.Tools.Core.GlobalFilters
 
         public override void OnActionExecuting(System.Web.Http.Controllers.HttpActionContext actionContext)
         {
-            //var actionDescriptor = actionContext.ActionDescriptor;
-            //string controllerName = actionDescriptor.ControllerDescriptor.ControllerName;
-            //string actionName = actionDescriptor.ActionName;
-            //var actionParams = actionContext.ActionDescriptor.GetParameters();
-            //string userName = User.Identity.GetUserId<int>();
             var noPackage = actionContext.ActionDescriptor.GetCustomAttributes<UnResultAttribute>();
             if (!noPackage.Any())
             {
