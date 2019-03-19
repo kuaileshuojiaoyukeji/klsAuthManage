@@ -5,6 +5,7 @@ using Swashbuckle.Application;
 using System.Globalization;
 using KLS.AuthManage.Providers;
 using KLS.AuthManage.App_Start;
+using System.Linq;
 
 [assembly: PreApplicationStartMethod(typeof(SwaggerConfig), "Register")]
 
@@ -23,6 +24,8 @@ namespace KLS.AuthManage
                 .EnableSwagger(c =>
                 {
                     c.OperationFilter<AddAuthorizationHeader>();
+                    c.ResolveConflictingActions(apiDescriptions => apiDescriptions.First());
+                    c.CustomProvider((defaultProvider) => new CachingSwaggerProvider(defaultProvider));
                     c.DocumentFilter<InjectMiniProfiler>();
                     c.MultipleApiVersions((apiDesc, version) =>{
                     var path = apiDesc.RelativePath.Split('/');
