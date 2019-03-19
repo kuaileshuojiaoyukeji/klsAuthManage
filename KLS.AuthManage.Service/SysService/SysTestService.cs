@@ -1,4 +1,5 @@
 ﻿using KLS.AuthManage.Component.Data.DbService;
+using KLS.AuthManage.Component.Tools.Core.LinqExtent;
 using KLS.AuthManage.Data.Model.SysModel;
 using KLS.AuthManage.Data.Model.ViewModel;
 using KLS.AuthManage.IService.ISysService;
@@ -35,11 +36,18 @@ namespace KLS.AuthManage.Service.SysService
             return _dbServiceReposity.Add(user);
         }
 
+        public List<SysTest> SelectByParams(SysTest sysTest, int page, int size = 20)
+        {
+            return _dbServiceReposity.All<SysTest>().Where(sysTest).ToList();
+        }
+
         public List<TestVM> SelectNames(int id, out int count)
         {
             count = 0;
-            SqlParameter prmTotal = new SqlParameter("@count", SqlDbType.Int);
-            prmTotal.Direction = ParameterDirection.Output;
+            SqlParameter prmTotal = new SqlParameter("@count", SqlDbType.Int)
+            {
+                Direction = ParameterDirection.Output
+            };
             var _list = _dbServiceReposity.Query<TestVM>("exec select_testNames @id, @count out", new SqlParameter("@id", id), prmTotal);
             count = (int)prmTotal.Value;
             return _list;

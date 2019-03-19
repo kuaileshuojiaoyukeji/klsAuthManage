@@ -49,7 +49,7 @@ namespace KLS.AuthManage.Controllers
         {
             //string userId = User.Identity.GetUserName();存储过程 分页 事务
             //int id = User.Identity.GetUserId<int>();
-            int nn = Convert.ToInt32("dd");
+            //int nn = Convert.ToInt32("dd");
             SysTest sysTest = new SysTest
             {
                 //注意:不设置该字段或者匿名接口访问时该操作员id字段数据为0
@@ -85,6 +85,17 @@ namespace KLS.AuthManage.Controllers
             //               name = model.TestName
             //           };
             return _sysPowerService.GetTestListByPage(page, size, models);
+        }
+
+        /// <summary>
+        /// 获取所有Test对象
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("GetTestVM")]
+        public List<SysTest> GetTestVM(SysTest testVM, int page, int size = 20)
+        {
+            return _sysPowerService.SelectByParams(testVM, page, size);
         }
 
         /// <summary>

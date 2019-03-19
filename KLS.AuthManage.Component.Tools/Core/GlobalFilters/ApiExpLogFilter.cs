@@ -11,6 +11,7 @@ using System.Web.Mvc;
 
 namespace KLS.AuthManage.Component.Tools.Core.GlobalFilters
 {
+    //弃用
     public class ApiExpLogFilter : HandleErrorAttribute
     {
         protected string _errorMsg = string.Empty;
