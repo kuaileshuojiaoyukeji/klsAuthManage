@@ -40,6 +40,7 @@ namespace KLS.AuthManage.Component.Tools.Core.GlobalFilters
             if (actionExecutedContext.Exception != null)
             {
                 #region Log02 错误日志记录
+                //这是test版本
                 //log02 type=db
                 LogEventInfo ei = new LogEventInfo(LogLevel.Error, "", sb.ToString());
                 ei.Properties["stacktrace"] = actionExecutedContext.Exception.ExceptionStackTrace();
