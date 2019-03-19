@@ -34,14 +34,15 @@ namespace KLS.AuthManage.Component.Tools.Core.GlobalFilters
                 if (databaseEntry == null)
                 {
                     _errorMsg = "无法保存更改，系已经被其他用户删除.";
-                    filterContext.Result = Failure(_errorMsg);
+                    //filterContext.Result = Failure(_errorMsg);
                 }
                 else
                 {
                     _errorMsg = "无法保存更改，当前记录已经被其他人更改.";
-                    filterContext.Result = Failure(_errorMsg);
+                    //filterContext.Result = Failure(_errorMsg);
                 }
             }
+
             LogEventInfo ei = new LogEventInfo(LogLevel.Error, "", sbExMsg);
             ei.Properties["stacktrace"] = exception.ExceptionStackTrace();
             LogHelper.LogException(ei);

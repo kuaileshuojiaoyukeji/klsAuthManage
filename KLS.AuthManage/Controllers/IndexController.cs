@@ -9,6 +9,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
+using System.Transactions;
 using System.Web.Http;
 
 namespace KLS.AuthManage.Controllers
@@ -44,17 +45,28 @@ namespace KLS.AuthManage.Controllers
         /// <returns></returns>
         [HttpPost]
         [Route("InsertTests")]
-        public string InsertTests(TestViewModel model)
+        public int InsertTests(TestViewModel model)
         {
-            //string userId = User.Identity.GetUserName();
+            //string userId = User.Identity.GetUserName();存储过程 分页 事务
             //int id = User.Identity.GetUserId<int>();
+            int nn = Convert.ToInt32("dd");
             SysTest sysTest = new SysTest
             {
                 //注意:不设置该字段或者匿名接口访问时该操作员id字段数据为0
                 CreatorID = User.Identity.GetUserId<int>(),
                 TestName = model.TestName
             };
-            return _sysPowerService.InsertTest(sysTest).ToString();
+            int num = -1;
+            using (TransactionScope transaction = new TransactionScope())
+            {
+                num = _sysPowerService.InsertTest(sysTest);
+                //测试事务
+                num = _sysPowerService.InsertTest(sysTest);
+                //int nn = Convert.ToInt32("dd");
+                transaction.Complete();
+            }
+
+            return num;
         }
 
         /// <summary>
@@ -63,9 +75,35 @@ namespace KLS.AuthManage.Controllers
         /// <returns></returns>
         [HttpPost]
         [Route("GetTests")]
-        public List<SysTest> GetTests()
+        public List<SysTest> GetTests(int page, int size = 20)
         {
-            return _sysPowerService.GetTestList();
+            var models = _sysPowerService.GetTestList();
+            
+            //var list = from model in models
+            //           select new
+            //           {
+            //               name = model.TestName
+            //           };
+            return _sysPowerService.GetTestListByPage(page, size, models);
+        }
+
+        /// <summary>
+        /// sql存储过程测试带输出参数
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("DoSql")]
+        public List<TestVM> DoSql(int id)
+        {
+            int pStr;
+            var models = _sysPowerService.SelectNames(id, out pStr);
+            //var list = from model in models
+            //           select new
+            //           {
+            //               name = model.TestName
+            //           };
+            var dd = pStr;
+            return models;
         }
 
         /// <summary>

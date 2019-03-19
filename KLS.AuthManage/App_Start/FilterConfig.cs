@@ -9,7 +9,7 @@ namespace KLS.AuthManage
     {
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
-            filters.Add(new ApiExpLogFilter());
+            //filters.Add(new ApiExpLogFilter());
         }
     }
 }

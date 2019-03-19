@@ -1,4 +1,5 @@
 ﻿using KLS.AuthManage.Data.Model.SysModel;
+using KLS.AuthManage.Data.Model.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,5 +12,7 @@ namespace KLS.AuthManage.IService.ISysService
     {
         List<SysTest> GetTestList();
         int InsertTest(SysTest user);
+        List<SysTest> GetTestListByPage(int pageIndex, int pagesize, List<SysTest> sysTests);
+        List<TestVM> SelectNames(int id, out int count);
     }
 }

@@ -1,4 +1,5 @@
 ﻿using KLS.AuthManage.Component.Data.Initialize;
+using KLS.AuthManage.Component.Tools.Core.GlobalFilters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +17,7 @@ namespace KLS.AuthManage
         {
             AreaRegistration.RegisterAllAreas();
             GlobalConfiguration.Configure(WebApiConfig.Register);
+            //GlobalFilters.Filters.Add(new ApiExpLogFilter());
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);

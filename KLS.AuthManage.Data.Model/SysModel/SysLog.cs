@@ -11,15 +11,20 @@ namespace KLS.AuthManage.Data.Model.SysModel
 {
     [Description("日志异常类")]
     [Table("T_Log")]
-    public class SysLog : EntityBaseBasics<int>
+    public class SysLog
     {
+        [Key]
+        [Display(Name = "日志ID")]
+        public int ID { set; get; }
+
         [Display(Name = "请求用时")]
         [StringLength(50)]
-        public string TimeStamp { set; get; }
+        public string Time_Stamp { set; get; }
 
         [Display(Name = "日志级别")]
         [StringLength(20)]
         public string Level { set; get; }
+
 
         [Display(Name = "机器名")]
         [StringLength(100)]
@@ -27,42 +32,42 @@ namespace KLS.AuthManage.Data.Model.SysModel
 
         [Display(Name = "日志类型")]
         [StringLength(50)]
-        public string LogType { set; get; }
+        public string type { set; get; }
 
         [Display(Name = "来源")]
         [StringLength(200)]
-        public string Source { set; get; }
+        public string source { set; get; }
 
         [Display(Name = "记录人")]
         [StringLength(200)]
-        public string Logger { set; get; }
+        public string logger { set; get; }
 
         [Display(Name = "控制器")]
         [StringLength(200)]
-        public string Controller { set; get; }
+        public string controller { set; get; }
 
-        [Display(Name = "Action")]
+        [Display(Name = "ACtion")]
         [StringLength(200)]
-        public string Action { set; get; }
+        public string action { set; get; }
 
         [Display(Name = "操作人")]
         [StringLength(200)]
-        public string LoggerUser { set; get; }
+        public string loggeruser { set; get; }
 
         [Display(Name = "参数")]
         [StringLength(200)]
-        public string Param { set; get; }
+        public string param { set; get; }
 
         [Display(Name = "日志内容")]
         [StringLength(6000)]
-        public string Message { set; get; }
+        public string message { set; get; }
 
         [Display(Name = "异常跟踪")]
         [StringLength(2000)]
-        public string StackTrace { set; get; }
+        public string stacktrace { set; get; }
 
         [Display(Name = "异常详细")]
         [StringLength(8000)]
-        public string Detail { set; get; }
+        public string detail { set; get; }
     }
 }

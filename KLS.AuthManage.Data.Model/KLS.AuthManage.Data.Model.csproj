@@ -73,6 +73,7 @@
     <Compile Include="ViewModel\ModuleModel.cs" />
     <Compile Include="ViewModel\PermissionModel.cs" />
     <Compile Include="ViewModel\TestViewModel.cs" />
+    <Compile Include="ViewModel\TestVM.cs" />
     <Compile Include="ViewModel\UserModel.cs" />
     <Compile Include="ViewModel\UserVM.cs" />
   </ItemGroup>
