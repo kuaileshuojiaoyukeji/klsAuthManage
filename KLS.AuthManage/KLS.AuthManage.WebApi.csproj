@@ -170,9 +170,6 @@
     <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
       <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
     </Reference>
-    <Reference Include="Swagger.Net, Version=0.5.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Swagger.Net.0.5.5\lib\net40\Swagger.Net.dll</HintPath>
-    </Reference>
     <Reference Include="Swashbuckle.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=cd1bb07a5ac7c7bc, processorArchitecture=MSIL">
       <HintPath>..\packages\Swashbuckle.Core.5.6.0\lib\net40\Swashbuckle.Core.dll</HintPath>
     </Reference>
@@ -291,7 +288,6 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\SwaggerConfig.cs" />
-    <Compile Include="App_Start\SwaggerNet.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Areas\HelpPage\ApiDescriptionExtensions.cs" />
     <Compile Include="Areas\HelpPage\App_Start\HelpPageConfig.cs" />
@@ -380,20 +376,6 @@
     <Content Include="Scripts\jquery-3.3.1.slim.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
-    <Content Include="SwaggerUI\css\screen.css" />
-    <Content Include="SwaggerUI\images\pet_store_api.png" />
-    <Content Include="SwaggerUI\images\wordnik_api.png" />
-    <Content Include="SwaggerUI\index.html" />
-    <Content Include="SwaggerUI\lib\backbone-min.js" />
-    <Content Include="SwaggerUI\lib\handlebars.runtime-1.0.0.beta.6.js" />
-    <Content Include="SwaggerUI\lib\jquery.ba-bbq.min.js" />
-    <Content Include="SwaggerUI\lib\jquery.min.js" />
-    <Content Include="SwaggerUI\lib\jquery.slideto.min.js" />
-    <Content Include="SwaggerUI\lib\jquery.wiggle.min.js" />
-    <Content Include="SwaggerUI\lib\swagger.js" />
-    <Content Include="SwaggerUI\lib\underscore-min.js" />
-    <Content Include="SwaggerUI\swagger-ui.js" />
-    <Content Include="SwaggerUI\swagger-ui.min.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -410,7 +392,6 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="SwaggerUI\lib\.DS_Store" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
