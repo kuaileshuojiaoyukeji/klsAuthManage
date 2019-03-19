@@ -14,7 +14,7 @@ using System.Web.Http;
 
 namespace KLS.AuthManage.Controllers
 {
-    [Authorize]
+    [AllowAnonymous]
     [RoutePrefix("api/v1/index")]
     public class IndexController : BaseController
     {

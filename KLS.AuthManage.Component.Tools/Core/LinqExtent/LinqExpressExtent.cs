@@ -37,8 +37,14 @@ namespace KLS.AuthManage.Component.Tools.Core.LinqExtent
                     continue;
                 if (name == "OrderName" || name == "SortName")
                     continue;
-                if (name == "UpdateDate" || name == "CreateDate")
-                    continue;
+                //if (name == "UpdateDate" || name == "CreateDate")
+                //    continue;
+                //if (name == "IsDeleted")
+                //{
+                //    if ((bool)value != false) {
+                //        continue;
+                //    }
+                //}
                 Expression left = Expression.Property(param, typeof(T).GetProperty(name));
                 Expression right = Expression.Constant(value);
                 Expression filter = Expression.Equal(left, right);

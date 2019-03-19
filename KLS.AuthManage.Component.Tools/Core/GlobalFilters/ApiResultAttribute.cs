@@ -13,6 +13,8 @@ using Microsoft.AspNet.Identity;
 using System.Web;
 using System.Threading;
 using System.Data.Entity.Infrastructure;
+using Newtonsoft.Json;
+using StackExchange.Profiling;
 
 namespace KLS.AuthManage.Component.Tools.Core.GlobalFilters
 {
@@ -20,6 +22,7 @@ namespace KLS.AuthManage.Component.Tools.Core.GlobalFilters
     {
         protected string _errorMsg = string.Empty;
         AuthManage.Data.Model.Member.ResultModel result = null;
+        public const string MiniProfilerResultsHeaderName = "X-MiniProfiler-Ids";
         public override void OnActionExecuted(HttpActionExecutedContext actionExecutedContext)
         {
             base.OnActionExecuted(actionExecutedContext);
@@ -81,6 +84,8 @@ namespace KLS.AuthManage.Component.Tools.Core.GlobalFilters
             HttpResponseMessage httpResponseMessage = JsonHelper.ToJsonResult(result);
             // 重新封装回传格式
             actionExecutedContext.Response = httpResponseMessage;
+            var MiniProfilerJson = JsonConvert.SerializeObject(new[] { MiniProfiler.Current.Id });
+            actionExecutedContext.Response.Content.Headers.Add(MiniProfilerResultsHeaderName, MiniProfilerJson);
         }
 
         public override void OnActionExecuting(System.Web.Http.Controllers.HttpActionContext actionContext)
