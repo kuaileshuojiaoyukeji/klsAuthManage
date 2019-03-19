@@ -52,9 +52,9 @@ namespace KLS.AuthManage.Component.Tools.Core.GlobalFilters
                     if (databaseEntry == null) { _errorMsg = "无法保存更改，系已经被其他用户删除."; }
                     else { _errorMsg = "无法保存更改，当前记录已经被其他人更改."; }
                 }
-                #region Log02 错误日志记录
+                #region Log02 内部错误日志记录
                 //log02 type=db
-                LogEventInfo ei = new LogEventInfo(LogLevel.Error, _errorMsg, sb.ToString());
+                LogEventInfo ei = new LogEventInfo(LogLevel.Error, "action_inside" + _errorMsg, sb.ToString());
                 ei.Properties["stacktrace"] = actionExecutedContext.Exception.ExceptionStackTrace();
                 ei.Properties["controller"] = actionExecutedContext.ActionContext.ActionDescriptor.ControllerDescriptor.ControllerName;
                 ei.Properties["action"] = actionExecutedContext.ActionContext.ActionDescriptor.ActionName;
@@ -107,11 +107,21 @@ namespace KLS.AuthManage.Component.Tools.Core.GlobalFilters
                             {
                                 error += state.Errors.First().Exception.Message ?? "";
                             }
+                            #region Log03 参数名或参数值进入时错误日志记录
+                            //log03 type=db
+                            LogEventInfo ei = new LogEventInfo(LogLevel.Error, "action_outside请查看错误日志", "");
+                            ei.Properties["stacktrace"] = error;
+                            ei.Properties["controller"] = actionContext.ActionDescriptor.ControllerDescriptor.ControllerName;
+                            ei.Properties["action"] = actionContext.ActionDescriptor.ActionName;
+                            ei.Properties["loggeruser"] = HttpContext.Current.User.Identity.GetUserName();
+                            ei.Properties["param"] = JsonHelper.ToJson(actionContext.ActionArguments);
+                            LogHelper.LogException(ei);
+                            #endregion
                             result = new AuthManage.Data.Model.Member.ResultModel
                             {
-                                StatusCode = HttpStatusCode.NotFound,
+                                StatusCode = HttpStatusCode.InternalServerError,
                                 IsSuccess = false,
-                                ErrorMsg = error
+                                ErrorMsg = "请查看错误日志"
                             };
                             HttpResponseMessage httpResponseMessage = JsonHelper.ToJsonResult(result);
                             actionContext.Response = httpResponseMessage;
