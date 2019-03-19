@@ -114,6 +114,7 @@ namespace KLS.AuthManage.Controllers
         [Route("InsertOnly")]
         public string InsertOnly(TestViewModel model)
         {
+            //这是测试分支
             //string userId = User.Identity.GetUserName();
             //int id = User.Identity.GetUserId<int>();
             SysOnly sysOnly = new SysOnly
