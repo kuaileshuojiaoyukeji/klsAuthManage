@@ -25,7 +25,6 @@ namespace KLS.AuthManage.Data.Model.SysModel
         [StringLength(20)]
         public string Level { set; get; }
 
-
         [Display(Name = "机器名")]
         [StringLength(100)]
         public string Host { set; get; }
@@ -63,7 +62,7 @@ namespace KLS.AuthManage.Data.Model.SysModel
         public string message { set; get; }
 
         [Display(Name = "异常跟踪")]
-        [StringLength(2000)]
+        [StringLength(8000)]
         public string stacktrace { set; get; }
 
         [Display(Name = "异常详细")]

@@ -12,11 +12,13 @@ using System.Web.Http.Filters;
 using Microsoft.AspNet.Identity;
 using System.Web;
 using System.Threading;
+using System.Data.Entity.Infrastructure;
 
 namespace KLS.AuthManage.Component.Tools.Core.GlobalFilters
 {
     public class ApiResultAttribute : System.Web.Http.Filters.ActionFilterAttribute, IActionFilter
     {
+        protected string _errorMsg = string.Empty;
         AuthManage.Data.Model.Member.ResultModel result = null;
         public override void OnActionExecuted(HttpActionExecutedContext actionExecutedContext)
         {
@@ -32,16 +34,24 @@ namespace KLS.AuthManage.Component.Tools.Core.GlobalFilters
             sb.AppendLine();
             sb.Append("ClientIp:" + UtilityHelper.GetUserIp().ToString());
             sb.AppendLine();
-            //给文件日志只需一个消息字符串
             LogHelper.LogInfo(sb.ToString());
             #endregion
             //初始化返回结果
             result = new AuthManage.Data.Model.Member.ResultModel();
             if (actionExecutedContext.Exception != null)
             {
+                _errorMsg = "请查看错误日志";
+                if (actionExecutedContext.Exception.GetType().Name == "DbUpdateConcurrencyException")
+                {
+                    var e = actionExecutedContext.Exception as DbUpdateConcurrencyException;
+                    var entry = e.Entries.Single();
+                    var databaseEntry = entry.GetDatabaseValues();
+                    if (databaseEntry == null) { _errorMsg = "无法保存更改，系已经被其他用户删除."; }
+                    else { _errorMsg = "无法保存更改，当前记录已经被其他人更改."; }
+                }
                 #region Log02 错误日志记录
                 //log02 type=db
-                LogEventInfo ei = new LogEventInfo(LogLevel.Error, "", sb.ToString());
+                LogEventInfo ei = new LogEventInfo(LogLevel.Error, _errorMsg, sb.ToString());
                 ei.Properties["stacktrace"] = actionExecutedContext.Exception.ExceptionStackTrace();
                 ei.Properties["controller"] = actionExecutedContext.ActionContext.ActionDescriptor.ControllerDescriptor.ControllerName;
                 ei.Properties["action"] = actionExecutedContext.ActionContext.ActionDescriptor.ActionName;
@@ -51,8 +61,7 @@ namespace KLS.AuthManage.Component.Tools.Core.GlobalFilters
                 #endregion
                 result.StatusCode = HttpStatusCode.InternalServerError;//actionExecutedContext.ActionContext.Response.StatusCode;
                 result.IsSuccess = false;
-                result.ErrorMsg = "请查看错误日志";//前端隐藏错误信息 
-                //result.ErrorMsg = actionExecutedContext.Exception.Message;
+                result.ErrorMsg = _errorMsg;//前端隐藏错误信息 
             }
             else
             {
@@ -76,11 +85,6 @@ namespace KLS.AuthManage.Component.Tools.Core.GlobalFilters
 
         public override void OnActionExecuting(System.Web.Http.Controllers.HttpActionContext actionContext)
         {
-            //var actionDescriptor = actionContext.ActionDescriptor;
-            //string controllerName = actionDescriptor.ControllerDescriptor.ControllerName;
-            //string actionName = actionDescriptor.ActionName;
-            //var actionParams = actionContext.ActionDescriptor.GetParameters();
-            //string userName = User.Identity.GetUserId<int>();
             var noPackage = actionContext.ActionDescriptor.GetCustomAttributes<UnResultAttribute>();
             if (!noPackage.Any())
             {

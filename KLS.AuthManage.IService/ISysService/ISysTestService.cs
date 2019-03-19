@@ -14,5 +14,6 @@ namespace KLS.AuthManage.IService.ISysService
         int InsertTest(SysTest user);
         List<SysTest> GetTestListByPage(int pageIndex, int pagesize, List<SysTest> sysTests);
         List<TestVM> SelectNames(int id, out int count);
+        List<SysTest> SelectByParams(SysTest sysTest, int page, int size = 20);
     }
 }
