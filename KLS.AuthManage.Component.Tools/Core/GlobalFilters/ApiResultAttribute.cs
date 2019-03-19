@@ -54,6 +54,7 @@ namespace KLS.AuthManage.Component.Tools.Core.GlobalFilters
                 result.IsSuccess = false;
                 result.ErrorMsg = "请查看错误日志";//前端隐藏错误信息 
                 //result.ErrorMsg = actionExecutedContext.Exception.Message;
+                //master测试
             }
             else
             {
