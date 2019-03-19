@@ -63,6 +63,7 @@ namespace KLS.AuthManage.Component.Tools.Core.GlobalFilters
                 if (!a.IsFaulted)
                 {
                     // 取得由 API 返回的资料
+                    //继续测试
                     result.Data = actionExecutedContext.ActionContext.Response.Content.ReadAsAsync<object>().Result;
                 }
                 //请求是否成功
