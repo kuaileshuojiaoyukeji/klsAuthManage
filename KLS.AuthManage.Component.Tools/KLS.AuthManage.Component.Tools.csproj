@@ -118,6 +118,7 @@
     <Compile Include="Configs\IdentityConfig.cs" />
     <Compile Include="Core\GlobalFilters\ApiExpLogFilter.cs" />
     <Compile Include="Core\GlobalFilters\ApiResultAttribute.cs" />
+    <Compile Include="Core\LinqExtent\LinqExpressExtent.cs" />
     <Compile Include="EnumConfigs\EnumGlobalConfig.cs" />
     <Compile Include="Helpers\EncryptionHelper.cs" />
     <Compile Include="Helpers\EnumExt.cs" />
