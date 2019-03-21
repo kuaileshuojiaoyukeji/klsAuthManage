@@ -1,6 +1,7 @@
 ﻿using KLS.AuthManage.Component.Data.Context;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data.Entity;
 using System.Linq;
 using System.Text;
@@ -12,10 +13,11 @@ namespace KLS.AuthManage.Component.Data.Initialize
     {
         public static void Initialize()
         {
-            Database.SetInitializer(new InitData());
+            Database.SetInitializer(new InitCreateDatabase());
+            //Database.SetInitializer(new InitData());
             using (var db = new EFDbContext())
             {
-                db.Database.Initialize(false);
+                db.Database.Initialize(true);
             }
         }
     }

@@ -24,9 +24,7 @@ namespace KLS.AuthManage
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             MiniProfilerEF6.Initialize();
-            DatabaseInitializer.Initialize();
-            string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["DefaultContext"].ToString();
-            System.Data.SqlClient.SqlDependency.Start(connectionString);
+            
         }
 
         protected void Application_BeginRequest()

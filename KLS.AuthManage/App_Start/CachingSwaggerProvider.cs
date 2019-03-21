@@ -1,4 +1,5 @@
-﻿using Swashbuckle.Swagger;
+﻿using Microsoft.Ajax.Utilities;
+using Swashbuckle.Swagger;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
@@ -11,27 +12,18 @@ namespace KLS.AuthManage.App_Start
 {
     public class CachingSwaggerProvider : ISwaggerProvider
     {
+        private static ConcurrentDictionary<string, SwaggerDocument> _cache =
+    new ConcurrentDictionary<string, SwaggerDocument>();
+
         private readonly ISwaggerProvider _swaggerProvider;
-        private static ConcurrentDictionary<string, SwaggerDocument> _cache = new ConcurrentDictionary<string, SwaggerDocument>();
-        private readonly string _xml;
+
         public CachingSwaggerProvider(ISwaggerProvider swaggerProvider)
         {
             _swaggerProvider = swaggerProvider;
         }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="swaggerProvider"></param>
-        /// <param name="xml">xml文档路径</param>
-        public CachingSwaggerProvider(ISwaggerProvider swaggerProvider, string xml)
-        {
-            _swaggerProvider = swaggerProvider;
-            _xml = xml;
-        }
 
         public SwaggerDocument GetSwagger(string rootUrl, string apiVersion)
         {
-
             var cacheKey = string.Format("{0}_{1}", rootUrl, apiVersion);
             SwaggerDocument srcDoc = null;
             //只读取一次
@@ -39,20 +31,68 @@ namespace KLS.AuthManage.App_Start
             {
                 srcDoc = _swaggerProvider.GetSwagger(rootUrl, apiVersion);
 
+                srcDoc.paths.ForEach(n =>
+                {
+                    SetOperation(n.Value.delete);
+                    SetOperation(n.Value.get);
+                    SetOperation(n.Value.head);
+                    SetOperation(n.Value.options);
+                    SetOperation(n.Value.patch);
+                    SetOperation(n.Value.post);
+                    SetOperation(n.Value.put);
+                });
+
                 srcDoc.vendorExtensions = new Dictionary<string, object> { { "ControllerDesc", GetControllerDesc() } };
                 _cache.TryAdd(cacheKey, srcDoc);
             }
             return srcDoc;
         }
 
+        private void SetOperation(Operation operation)
+        {
+            if (operation != null)
+            {
+                operation.tags[0] = operation.tags[0].Split('_').Last();
+
+                if (operation.parameters == null)
+                {
+                    operation.parameters = new List<Parameter>();
+                }
+
+                if (operation.operationId.StartsWith("Import"))
+                {
+                    operation.parameters.Add(new Parameter()
+                    {
+                        @in = "formData",
+                        name = "",
+                        type = "file"
+                    });
+                    if (operation.consumes == null)
+                    {
+                        operation.consumes = new List<string>();
+                    }
+                    operation.consumes.Add("multipart/form-data");
+                }
+            }
+        }
+
         /// <summary>
         /// 从API文档中读取控制器描述
         /// </summary>
         /// <returns>所有控制器描述</returns>
-        public ConcurrentDictionary<string, string> GetControllerDesc()
+        public static ConcurrentDictionary<string, string> GetControllerDesc()
         {
-            string xmlpath = _xml;
             ConcurrentDictionary<string, string> controllerDescDict = new ConcurrentDictionary<string, string>();
+
+            GetControllerDescByProject("SwaggerDemo", "Controller", controllerDescDict);
+            GetControllerDescByProject("Application", "AppService", controllerDescDict);
+
+            return controllerDescDict;
+        }
+
+        private static void GetControllerDescByProject(string subName, string endsWith, ConcurrentDictionary<string, string> controllerDescDict)
+        {
+            string xmlpath = Directory.GetFiles(System.AppDomain.CurrentDomain.BaseDirectory + "bin\\").FirstOrDefault(n => n.ToLower().EndsWith(subName.ToLower() + ".xml"));
             if (File.Exists(xmlpath))
             {
                 XmlDocument xmldoc = new XmlDocument();
@@ -60,7 +100,7 @@ namespace KLS.AuthManage.App_Start
                 string type = string.Empty, path = string.Empty, controllerName = string.Empty;
 
                 string[] arrPath;
-                int length = -1, cCount = "Controller".Length;
+                int length = -1, cCount = endsWith.Length;
                 XmlNode summaryNode = null;
                 foreach (XmlNode node in xmldoc.SelectNodes("//member"))
                 {
@@ -71,11 +111,13 @@ namespace KLS.AuthManage.App_Start
                         arrPath = type.Split('.');
                         length = arrPath.Length;
                         controllerName = arrPath[length - 1];
-                        if (controllerName.EndsWith("Controller"))
+                        if (controllerName.EndsWith(endsWith))
                         {
                             //获取控制器注释
                             summaryNode = node.SelectSingleNode("summary");
-                            string key = controllerName.Remove(controllerName.Length - cCount, cCount);
+                            string key = controllerName.StartsWith("I") ?
+                                controllerName.Substring(1, 1).ToLower() + controllerName.Substring(2, controllerName.Length - 2 - cCount) :
+                                controllerName.Remove(controllerName.Length - cCount, cCount);
                             if (summaryNode != null && !string.IsNullOrEmpty(summaryNode.InnerText) && !controllerDescDict.ContainsKey(key))
                             {
                                 controllerDescDict.TryAdd(key, summaryNode.InnerText.Trim());
@@ -84,7 +126,6 @@ namespace KLS.AuthManage.App_Start
                     }
                 }
             }
-            return controllerDescDict;
         }
     }
 }

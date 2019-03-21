@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using KLS.AuthManage.Component.Data.Initialize;
 using KLS.AuthManage.Component.Tools.Configs;
 using KLS.AuthManage.Component.Tools.Helpers;
 using KLS.AuthManage.Data.Model.Member;
@@ -25,6 +26,9 @@ namespace KLS.AuthManage
         {
             RegisterAutofacForSingle.RegisterAutofac(app);
             ConfigureAuth(app);
+            DatabaseInitializer.Initialize();
+            string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["DefaultContext"].ToString();
+            System.Data.SqlClient.SqlDependency.Start(connectionString);
         }
 
         public void ConfigureAuth(IAppBuilder app)
