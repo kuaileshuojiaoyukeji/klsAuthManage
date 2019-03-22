@@ -27,6 +27,7 @@ namespace KLS.AuthManage
                     c.ResolveConflictingActions(apiDescriptions => apiDescriptions.First());
                     c.CustomProvider((defaultProvider) => new CachingSwaggerProvider(defaultProvider));
                     c.DocumentFilter<InjectMiniProfiler>();
+                    c.IncludeXmlComments(GetXmlCommentsPath());
                     c.MultipleApiVersions((apiDesc, version) =>{
                     var path = apiDesc.RelativePath.Split('/');
                     var pathVersion = path[1];
