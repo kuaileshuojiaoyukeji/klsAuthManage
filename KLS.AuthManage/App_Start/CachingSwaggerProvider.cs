@@ -11,27 +11,18 @@ namespace KLS.AuthManage.App_Start
 {
     public class CachingSwaggerProvider : ISwaggerProvider
     {
+        private static ConcurrentDictionary<string, SwaggerDocument> _cache =
+            new ConcurrentDictionary<string, SwaggerDocument>();
+
         private readonly ISwaggerProvider _swaggerProvider;
-        private static ConcurrentDictionary<string, SwaggerDocument> _cache = new ConcurrentDictionary<string, SwaggerDocument>();
-        private readonly string _xml;
+
         public CachingSwaggerProvider(ISwaggerProvider swaggerProvider)
         {
             _swaggerProvider = swaggerProvider;
         }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="swaggerProvider"></param>
-        /// <param name="xml">xml文档路径</param>
-        public CachingSwaggerProvider(ISwaggerProvider swaggerProvider, string xml)
-        {
-            _swaggerProvider = swaggerProvider;
-            _xml = xml;
-        }
 
         public SwaggerDocument GetSwagger(string rootUrl, string apiVersion)
         {
-
             var cacheKey = string.Format("{0}_{1}", rootUrl, apiVersion);
             SwaggerDocument srcDoc = null;
             //只读取一次
@@ -49,9 +40,9 @@ namespace KLS.AuthManage.App_Start
         /// 从API文档中读取控制器描述
         /// </summary>
         /// <returns>所有控制器描述</returns>
-        public ConcurrentDictionary<string, string> GetControllerDesc()
+        public static ConcurrentDictionary<string, string> GetControllerDesc()
         {
-            string xmlpath = _xml;
+            string xmlpath = string.Format("{0}/bin/KLS.AuthManage.xml", System.AppDomain.CurrentDomain.BaseDirectory);
             ConcurrentDictionary<string, string> controllerDescDict = new ConcurrentDictionary<string, string>();
             if (File.Exists(xmlpath))
             {
