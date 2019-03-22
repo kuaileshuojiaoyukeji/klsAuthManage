@@ -1,5 +1,5 @@
-﻿using KLS.AuthManage.Component.Data.Initialize;
-using KLS.AuthManage.Component.Tools.Core.GlobalFilters;
+﻿using KLS.AuthManage.Component.Tools.Core.GlobalFilters;
+using KLS.AuthManage.Component.Tools.Core.Initialize;
 using StackExchange.Profiling;
 using StackExchange.Profiling.EntityFramework6;
 using System;
@@ -24,9 +24,7 @@ namespace KLS.AuthManage
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             MiniProfilerEF6.Initialize();
-            DatabaseInitializer.Initialize();
-            string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["DefaultContext"].ToString();
-            System.Data.SqlClient.SqlDependency.Start(connectionString);
+            
         }
 
         protected void Application_BeginRequest()

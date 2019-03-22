@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace KLS.AuthManage.Component.Data.Initialize
+namespace KLS.AuthManage.Component.Tools.Core.Initialize
 {
     public static class DatabaseInitializer
     {

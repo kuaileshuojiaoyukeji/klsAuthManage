@@ -17,5 +17,9 @@ namespace KLS.AuthManage.Data.Model.SysModel
         [StringLength(30)]
         [Description("测试名称")]
         public string TestName { get; set; }
+
+        [StringLength(30)]
+        [Description("测试初始化")]
+        public string ChuShiHua { get; set; }
     }
 }
