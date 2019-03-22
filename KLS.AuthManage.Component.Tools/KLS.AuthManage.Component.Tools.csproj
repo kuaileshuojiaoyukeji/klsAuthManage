@@ -124,6 +124,8 @@
     <Compile Include="Configs\IdentityConfig.cs" />
     <Compile Include="Core\GlobalFilters\ApiExpLogFilter.cs" />
     <Compile Include="Core\GlobalFilters\ApiResultAttribute.cs" />
+    <Compile Include="Core\Initialize\DatabaseInitializer.cs" />
+    <Compile Include="Core\Initialize\InitData.cs" />
     <Compile Include="Core\LinqExtent\LinqExpressExtent.cs" />
     <Compile Include="EnumConfigs\EnumGlobalConfig.cs" />
     <Compile Include="Helpers\EncryptionHelper.cs" />
@@ -143,6 +145,10 @@
     <ProjectReference Include="..\KLS.AuthManage.Data.Model\KLS.AuthManage.Data.Model.csproj">
       <Project>{209FFF10-8812-4A6B-9426-71CA815269FA}</Project>
       <Name>KLS.AuthManage.Data.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\KLS.AuthManage.IService\KLS.AuthManage.IService.csproj">
+      <Project>{0500c599-65b9-424e-b800-83c8b8fbdb58}</Project>
+      <Name>KLS.AuthManage.IService</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
