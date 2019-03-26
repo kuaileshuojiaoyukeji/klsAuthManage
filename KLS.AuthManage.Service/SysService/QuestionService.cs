@@ -20,7 +20,7 @@ namespace KLS.AuthManage.Service.SysService
 
         public List<Question> GetQuestionsByExamId(string examId)
         {
-            return _dbServiceReposity.Where<Question>(d=>d.ExamId == examId).ToList();
+            return _dbServiceReposity.Where<Question>(d => d.ExamId == examId).OrderBy(d => d.SortIndex).ToList();
         }
     }
 }

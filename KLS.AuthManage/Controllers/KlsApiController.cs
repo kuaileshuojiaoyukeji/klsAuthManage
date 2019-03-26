@@ -147,12 +147,13 @@ namespace KLS.AuthManage.Controllers
         /// <summary>
         /// 根据章节id也是试卷id获取试题及选项
         /// </summary>
-        /// <param name="examId"></param>
+        /// <param name="examId">章节id</param>
         /// <returns></returns>
         [HttpPost]
         [Route("GetQuestionsByExamId")]
         public List<QuestionModel> GetQuestionsByExamId(string examId)
         {
+            var list = _questionService.GetQuestionsByExamId(examId);
             return null;
             //return _examService.GetExamsByCourseId(courseId);
         }
