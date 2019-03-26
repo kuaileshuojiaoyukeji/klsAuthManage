@@ -77,6 +77,8 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -86,9 +88,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Context\ConnectionStringContext.cs" />
-    <Compile Include="Context\EFDbContext.cs" />
+    <Compile Include="Context\Course.cs" />
+    <Compile Include="Context\CourseItem.cs" />
+    <Compile Include="Context\CourseItemChapter.cs" />
+    <Compile Include="Context\hzwxdb.cs" />
+    <Compile Include="Context\Subject.cs" />
     <Compile Include="DbService\DbServiceReposity.cs" />
     <Compile Include="DbService\IDbServiceReposity.cs" />
+    <Compile Include="Migrations\201903260313259_InitialCreate.cs" />
+    <Compile Include="Migrations\201903260313259_InitialCreate.Designer.cs">
+      <DependentUpon>201903260313259_InitialCreate.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -103,6 +113,11 @@
       <Project>{209FFF10-8812-4A6B-9426-71CA815269FA}</Project>
       <Name>KLS.AuthManage.Data.Model</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201903260313259_InitialCreate.resx">
+      <DependentUpon>201903260313259_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

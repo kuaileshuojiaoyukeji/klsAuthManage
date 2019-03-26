@@ -12,8 +12,8 @@ namespace KLS.AuthManage.Component.Tools.Core.Initialize
     {
         public static void Initialize()
         {
-            Database.SetInitializer(new InitData());
-            using (var db = new EFDbContext())
+            //Database.SetInitializer(new InitData());
+            using (var db = new hzwxdb())
             {
                 db.Database.Initialize(false);
             }

@@ -1,5 +1,4 @@
-﻿using KLS.AuthManage.Data.Model.Member;
-using KLS.AuthManage.Data.Model.SysModel;
+using KLS.AuthManage.Data.Model.Member;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Collections.Generic;
@@ -13,33 +12,46 @@ namespace KLS.AuthManage.Component.Data.Context
 {
     public class ApplicationUserStore : UserStore<User, Role, int, ApplicationUserLogin, ApplicationUserRole, ApplicationClaim>
     {
-        public ApplicationUserStore(EFDbContext context): base(context){}
+        public ApplicationUserStore(hzwxdb context) : base(context) { }
     }
 
     public class ApplicationRoleStore : RoleStore<Role, int, ApplicationUserRole>
     {
-        public ApplicationRoleStore(EFDbContext context): base(context){}
+        public ApplicationRoleStore(hzwxdb context) : base(context) { }
     }
 
-    public class EFDbContext : IdentityDbContext<User, Role, int, ApplicationUserLogin, ApplicationUserRole, ApplicationClaim>
+    public partial class hzwxdb : IdentityDbContext<User, Role, int, ApplicationUserLogin, ApplicationUserRole, ApplicationClaim>
     {
-        public EFDbContext(): base("DefaultContext"){}
+        public hzwxdb()
+            : base("name=HZDBContext")
+        {
+        }
 
-        public DbSet<SysTest> SysTest { get; set; }
-        public DbSet<SysOnly> SysOnly { get; set; }
-        public DbSet<SysLog> SysLog { get; set; }
-        public DbSet<SysPermission> SysPermission { get; set; }
-        public DbSet<SysModule> SysModule { get; set; }
+        public virtual DbSet<Course> Course { get; set; }
+        public virtual DbSet<CourseItem> CourseItem { get; set; }
+        public virtual DbSet<CourseItemChapter> CourseItemChapter { get; set; }
+        public virtual DbSet<Subject> Subject { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            base.OnModelCreating(modelBuilder);
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
             modelBuilder.Entity<User>().ToTable("Sys_User");
             modelBuilder.Entity<ApplicationUserLogin>().ToTable("Sys_UserLogin");
             modelBuilder.Entity<ApplicationClaim>().ToTable("Sys_Claim");
             modelBuilder.Entity<ApplicationUserRole>().ToTable("Sys_RoleUser");
             modelBuilder.Entity<Role>().ToTable("Sys_Role");
+
+            modelBuilder.Entity<CourseItem>()
+                .Property(e => e.OriginalPrice)
+                .HasPrecision(19, 4);
+
+            modelBuilder.Entity<CourseItem>()
+                .Property(e => e.DiscountPrice)
+                .HasPrecision(19, 4);
+
+            modelBuilder.Entity<CourseItem>()
+                .Property(e => e.CoursePrice)
+                .HasPrecision(19, 4);
         }
     }
 }

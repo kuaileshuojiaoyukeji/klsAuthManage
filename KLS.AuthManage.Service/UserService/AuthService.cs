@@ -17,7 +17,7 @@ namespace KLS.AuthManage.Service.UserService
         private readonly ApplicationUserManager _userManager;
         public AuthService()
         {
-            _userManager = new ApplicationUserManager(new ApplicationUserStore(new EFDbContext()));
+            _userManager = new ApplicationUserManager(new ApplicationUserStore(new hzwxdb()));
         }
 
         public async Task<User> FindUserAsync(UserModel model)

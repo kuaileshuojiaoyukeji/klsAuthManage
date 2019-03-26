@@ -27,8 +27,8 @@ namespace KLS.AuthManage
             RegisterAutofacForSingle.RegisterAutofac(app);
             ConfigureAuth(app);
             DatabaseInitializer.Initialize();
-            string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["DefaultContext"].ToString();
-            System.Data.SqlClient.SqlDependency.Start(connectionString);
+            //string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["HZDBContext"].ToString();
+            //System.Data.SqlClient.SqlDependency.Start(connectionString);
         }
 
         public void ConfigureAuth(IAppBuilder app)

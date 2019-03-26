@@ -11,9 +11,9 @@ using System.Web.Mvc;
 
 namespace KLS.AuthManage.Component.Tools.Core.Initialize
 {
-    public class InitData : DropCreateDatabaseIfModelChanges<EFDbContext>
+    public class InitData : DropCreateDatabaseIfModelChanges<hzwxdb>
     {
-        protected override void Seed(EFDbContext context)
+        protected override void Seed(hzwxdb context)
         {
             User user = new User
             {
