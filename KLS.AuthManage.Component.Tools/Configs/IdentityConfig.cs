@@ -41,7 +41,7 @@ namespace KLS.AuthManage.Component.Tools.Configs
 
         public static ApplicationUserManager Create(IdentityFactoryOptions<ApplicationUserManager> options, IOwinContext context)
         {
-            var manager = new ApplicationUserManager(new ApplicationUserStore(context.Get<EFDbContext>()));
+            var manager = new ApplicationUserManager(new ApplicationUserStore(context.Get<EFQuestion>()));
 
             // 配置用户名的验证逻辑
             manager.UserValidator = new UserValidator<User, int>(manager)

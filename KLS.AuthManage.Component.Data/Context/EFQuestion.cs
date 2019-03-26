@@ -1,4 +1,4 @@
-﻿using KLS.AuthManage.Data.Model.Member;
+using KLS.AuthManage.Data.Model.Member;
 using KLS.AuthManage.Data.Model.SysModel;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System;
@@ -13,23 +13,32 @@ namespace KLS.AuthManage.Component.Data.Context
 {
     public class ApplicationUserStore : UserStore<User, Role, int, ApplicationUserLogin, ApplicationUserRole, ApplicationClaim>
     {
-        public ApplicationUserStore(EFDbContext context): base(context){}
+        public ApplicationUserStore(EFQuestion context) : base(context) { }
     }
 
     public class ApplicationRoleStore : RoleStore<Role, int, ApplicationUserRole>
     {
-        public ApplicationRoleStore(EFDbContext context): base(context){}
+        public ApplicationRoleStore(EFQuestion context) : base(context) { }
     }
 
-    public class EFDbContext : IdentityDbContext<User, Role, int, ApplicationUserLogin, ApplicationUserRole, ApplicationClaim>
+    public partial class EFQuestion : IdentityDbContext<User, Role, int, ApplicationUserLogin, ApplicationUserRole, ApplicationClaim>
     {
-        public EFDbContext(): base("DefaultContext"){}
+        public EFQuestion()
+            : base("name=EFQuestion")
+        {
+        }
 
-        public DbSet<SysTest> SysTest { get; set; }
-        public DbSet<SysOnly> SysOnly { get; set; }
-        public DbSet<SysLog> SysLog { get; set; }
-        public DbSet<SysPermission> SysPermission { get; set; }
-        public DbSet<SysModule> SysModule { get; set; }
+        public virtual DbSet<Certificate> Certificate { get; set; }
+        public virtual DbSet<ChapterSection> ChapterSection { get; set; }
+        public virtual DbSet<Course> Course { get; set; }
+        public virtual DbSet<CourseQuestionType> CourseQuestionType { get; set; }
+        public virtual DbSet<Exam> Exam { get; set; }
+        public virtual DbSet<ExamScheme> ExamScheme { get; set; }
+        public virtual DbSet<ExamSchemeScore> ExamSchemeScore { get; set; }
+        public virtual DbSet<Question> Question { get; set; }
+        public virtual DbSet<QuestionOption> QuestionOption { get; set; }
+        public virtual DbSet<QuestionType> QuestionType { get; set; }
+        public virtual DbSet<SysLog> SysLog { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

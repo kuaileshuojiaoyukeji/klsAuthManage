@@ -70,6 +70,7 @@
     <Compile Include="SysModel\SysPermission.cs" />
     <Compile Include="SysModel\SysTest.cs" />
     <Compile Include="ViewBaseModel.cs" />
+    <Compile Include="ViewModel\ChapterSectionModel.cs" />
     <Compile Include="ViewModel\ModuleModel.cs" />
     <Compile Include="ViewModel\PermissionModel.cs" />
     <Compile Include="ViewModel\TestViewModel.cs" />

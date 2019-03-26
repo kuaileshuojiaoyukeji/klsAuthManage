@@ -93,12 +93,14 @@ namespace KLS.AuthManage.Data.Model.Member
 
     public class ApplicationUserLogin : IdentityUserLogin<int>
     {
-
+        [Key]
+        public int Id { get; set; }
     }
 
     public class ApplicationUserRole : IdentityUserRole<int>
     {
-
+        [Key]
+        public int Id { get; set; }
     }
 
     public class ApplicationClaim : IdentityUserClaim<int>

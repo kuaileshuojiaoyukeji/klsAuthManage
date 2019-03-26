@@ -329,6 +329,7 @@
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\IndexController.cs" />
+    <Compile Include="Controllers\KlsApiController.cs" />
     <Compile Include="Controllers\RoleController.cs" />
     <Compile Include="Controllers\SysUserController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />

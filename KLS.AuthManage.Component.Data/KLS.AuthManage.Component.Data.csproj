@@ -77,6 +77,8 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -85,8 +87,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Context\Certificate.cs" />
+    <Compile Include="Context\ChapterSection.cs" />
     <Compile Include="Context\ConnectionStringContext.cs" />
-    <Compile Include="Context\EFDbContext.cs" />
+    <Compile Include="Context\Course.cs" />
+    <Compile Include="Context\CourseQuestionType.cs" />
+    <Compile Include="Context\EFQuestion.cs" />
+    <Compile Include="Context\Exam.cs" />
+    <Compile Include="Context\ExamScheme.cs" />
+    <Compile Include="Context\ExamSchemeScore.cs" />
+    <Compile Include="Context\question.cs" />
+    <Compile Include="Context\QuestionOption.cs" />
+    <Compile Include="Context\QuestionType.cs" />
     <Compile Include="DbService\DbServiceReposity.cs" />
     <Compile Include="DbService\IDbServiceReposity.cs" />
     <Compile Include="Migrations\Configuration.cs" />

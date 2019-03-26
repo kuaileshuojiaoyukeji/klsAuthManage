@@ -1,4 +1,5 @@
-﻿using System;
+﻿using KLS.AuthManage.Component.Data.Context;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,6 @@ namespace KLS.AuthManage.IService.ISysService
 {
     public interface ICourseService
     {
-
+        List<Course> GetCoursesByCertificateId(string certId);
     }
 }
