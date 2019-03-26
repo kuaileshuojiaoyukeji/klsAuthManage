@@ -61,6 +61,9 @@
     <Compile Include="SysService\CertificateService.cs" />
     <Compile Include="SysService\ChapterSectionService.cs" />
     <Compile Include="SysService\CourseService.cs" />
+    <Compile Include="SysService\ExamService.cs" />
+    <Compile Include="SysService\QuestionOptionService.cs" />
+    <Compile Include="SysService\QuestionService.cs" />
     <Compile Include="SysService\SysOnlyService.cs" />
     <Compile Include="SysService\SysTestService.cs" />
     <Compile Include="UserService\AuthService.cs" />

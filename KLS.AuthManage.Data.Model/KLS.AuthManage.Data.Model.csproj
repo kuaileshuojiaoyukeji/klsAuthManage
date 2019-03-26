@@ -73,6 +73,8 @@
     <Compile Include="ViewModel\ChapterSectionModel.cs" />
     <Compile Include="ViewModel\ModuleModel.cs" />
     <Compile Include="ViewModel\PermissionModel.cs" />
+    <Compile Include="ViewModel\QuestionModel.cs" />
+    <Compile Include="ViewModel\QuestionOptionModel.cs" />
     <Compile Include="ViewModel\TestViewModel.cs" />
     <Compile Include="ViewModel\TestVM.cs" />
     <Compile Include="ViewModel\UserModel.cs" />

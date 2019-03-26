@@ -18,11 +18,18 @@ namespace KLS.AuthManage.Controllers
         private readonly ICertificateService _certificateService;
         private readonly ICourseService _courseService;
         private readonly IChapterSectionService _chapterSectionService;
-        public KlsApiController(IChapterSectionService chapterSectionService, ICourseService courseService, ICertificateService certificateService)
+        private readonly IExamService _examService;
+        private readonly IQuestionService _questionService;
+        private readonly IQuestionOptionService _questionOptionService;
+
+        public KlsApiController(IQuestionOptionService questionOptionService, IQuestionService questionService, IExamService examService, IChapterSectionService chapterSectionService, ICourseService courseService, ICertificateService certificateService)
         {
             _certificateService = certificateService;
             _courseService = courseService;
             _chapterSectionService = chapterSectionService;
+            _examService = examService;
+            _questionOptionService = questionOptionService;
+            _questionService = questionService;
         }
 
         /// <summary>
@@ -111,6 +118,43 @@ namespace KLS.AuthManage.Controllers
                 }
             }
             return chapterSectionModels;
+        }
+
+        /// <summary>
+        /// 根据章节id获取对应的试卷
+        /// </summary>
+        /// <param name="chapterSectionId">章节id</param>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("GetExamsByChapterSectionId")]
+        public List<Exam> GetExamsByChapterSectionId(string chapterSectionId)
+        {
+            return _examService.GetExamsByChapterSectionId(chapterSectionId);
+        }
+
+        /// <summary>
+        /// 根据课程id获取对应的试卷
+        /// </summary>
+        /// <param name="courseId">课程id</param>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("GetExamsByCourseId")]
+        public List<Exam> GetExamsByCourseId(string courseId)
+        {
+            return _examService.GetExamsByCourseId(courseId);
+        }
+
+        /// <summary>
+        /// 根据章节id也是试卷id获取试题及选项
+        /// </summary>
+        /// <param name="examId"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("GetQuestionsByExamId")]
+        public List<QuestionModel> GetQuestionsByExamId(string examId)
+        {
+            return null;
+            //return _examService.GetExamsByCourseId(courseId);
         }
     }
 }

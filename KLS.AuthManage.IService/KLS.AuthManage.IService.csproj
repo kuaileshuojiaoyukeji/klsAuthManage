@@ -57,6 +57,9 @@
     <Compile Include="ISysService\ICertificateService.cs" />
     <Compile Include="ISysService\IChapterSectionService.cs" />
     <Compile Include="ISysService\ICourseService.cs" />
+    <Compile Include="ISysService\IExamService.cs" />
+    <Compile Include="ISysService\IQuestionOptionService.cs" />
+    <Compile Include="ISysService\IQuestionService.cs" />
     <Compile Include="ISysService\ISysOnlyService.cs" />
     <Compile Include="ISysService\ISysTestService.cs" />
     <Compile Include="IUserService\IAuthService.cs" />
