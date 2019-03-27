@@ -69,6 +69,7 @@
     <Compile Include="SysModel\SysOnly.cs" />
     <Compile Include="SysModel\SysPermission.cs" />
     <Compile Include="SysModel\SysTest.cs" />
+    <Compile Include="SysModel\SysUserCertificate.cs" />
     <Compile Include="ViewBaseModel.cs" />
     <Compile Include="ViewModel\ChapterSectionModel.cs" />
     <Compile Include="ViewModel\ModuleModel.cs" />
@@ -77,6 +78,7 @@
     <Compile Include="ViewModel\QuestionOptionModel.cs" />
     <Compile Include="ViewModel\TestViewModel.cs" />
     <Compile Include="ViewModel\TestVM.cs" />
+    <Compile Include="ViewModel\UpdatePasswordModel.cs" />
     <Compile Include="ViewModel\UserModel.cs" />
     <Compile Include="ViewModel\UserVM.cs" />
   </ItemGroup>

@@ -62,6 +62,7 @@
     <Compile Include="ISysService\IQuestionService.cs" />
     <Compile Include="ISysService\ISysOnlyService.cs" />
     <Compile Include="ISysService\ISysTestService.cs" />
+    <Compile Include="ISysService\ISysUserCertificateService.cs" />
     <Compile Include="IUserService\IAuthService.cs" />
     <Compile Include="IUserService\IModuleService.cs" />
     <Compile Include="IUserService\IPermissionService.cs" />

@@ -20,5 +20,6 @@ namespace KLS.AuthManage.IService.IUserService
         Task<bool> UpdateRolesById(int userId, int[] roleIds);
         Task<User> FindUserById(int userId);
         Task<IList<string>> GetUserRoleNameByIds(int userId);
+        Task<bool> UpdateUserPwAsync(int userId, string oldPassword, string newPassword);
     }
 }

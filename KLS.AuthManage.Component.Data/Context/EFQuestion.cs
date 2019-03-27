@@ -39,8 +39,9 @@ namespace KLS.AuthManage.Component.Data.Context
         public virtual DbSet<QuestionOption> QuestionOption { get; set; }
         public virtual DbSet<QuestionType> QuestionType { get; set; }
         public virtual DbSet<SysLog> SysLog { get; set; }
+        public virtual DbSet<SysUserCertificate> SysUserCertificate { get; set; } 
 
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+    protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();

@@ -18,9 +18,14 @@ namespace KLS.AuthManage.Service.SysService
             _dbServiceReposity = dbServiceReposity;
         }
 
+        public List<Question> GetQuestionsByChapterSectionId(string chapterSectionId)
+        {
+            return _dbServiceReposity.Where<Question>(d => d.ExamId == chapterSectionId && d.ExamId != "" && d.CategoryId == "Exercise").OrderBy(d => d.SortIndex).ToList();
+        }
+
         public List<Question> GetQuestionsByExamId(string examId)
         {
-            return _dbServiceReposity.Where<Question>(d => d.ExamId == examId).OrderBy(d => d.SortIndex).ToList();
+            return _dbServiceReposity.Where<Question>(d => d.ExamId == examId && d.ExamId != "" && d.CategoryId == "Exam").OrderBy(d => d.SortIndex).ToList();
         }
     }
 }

@@ -12,7 +12,7 @@ using System.Web.Http;
 
 namespace KLS.AuthManage.Controllers
 {
-    //[Authorize]
+    [Authorize]
     [RoutePrefix("api/v1/SysUser")]
     public class SysUserController : ApiController
     {
@@ -58,10 +58,8 @@ namespace KLS.AuthManage.Controllers
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        [AllowAnonymous]
         [HttpPost]
         [Route("InsertUser")]
-        //[Authorize(Roles = "super,admin")]
         public async Task<bool> InsertUser(UserVM model)
         {
             User _users = new User()
@@ -93,6 +91,18 @@ namespace KLS.AuthManage.Controllers
             string[] sArray = roleIds.Split(',');
             int[] idInts = Array.ConvertAll<string, int>(sArray, Convert.ToInt32);
             return await _authService.UpdateRolesById(userId, idInts);
+        }
+
+        /// <summary>
+        /// 正式上线提供客户在线修改密码
+        /// </summary>
+        /// <param name="updatePasswordModel"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("UpdateUserPassword")]
+        public async Task<bool> UpdateUserPassword(UpdatePasswordModel updatePasswordModel)
+        {
+            return await _authService.UpdateUserPwAsync(User.Identity.GetUserId<int>() ,updatePasswordModel.OldPassword, updatePasswordModel.NewPassword);
         }
     }
 }

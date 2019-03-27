@@ -8,8 +8,6 @@ namespace KLS.AuthManage.Data.Model.ViewModel
 {
     public class QuestionOptionModel
     {
-        public string CourseId { get; set; }
-
         public string QuestionId { get; set; }
 
         public string OptionId { get; set; }

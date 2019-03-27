@@ -32,7 +32,7 @@ namespace KLS.AuthManage
                     var path = apiDesc.RelativePath.Split('/');
                     var pathVersion = path[1];
                     return CultureInfo.InvariantCulture.CompareInfo.IndexOf(pathVersion, version, CompareOptions.IgnoreCase) >= 0;
-                },vc =>{vc.Version("v1", "接口");});
+                },vc =>{vc.Version("v1", "快乐说接口");});
                     GetXmlCommentsPath();
                 })
                 .EnableSwaggerUi(c =>

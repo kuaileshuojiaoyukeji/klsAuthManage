@@ -11,6 +11,7 @@ using System.Web.Http;
 
 namespace KLS.AuthManage.Controllers
 {
+    //[Authorize]
     [AllowAnonymous]
     [RoutePrefix("api/v1/KlsApi")]
     public class KlsApiController : BaseController
@@ -145,17 +146,124 @@ namespace KLS.AuthManage.Controllers
         }
 
         /// <summary>
-        /// 根据章节id也是试卷id获取试题及选项
+        /// 练习题根据章节id获取试题及选项
         /// </summary>
-        /// <param name="examId">章节id</param>
+        /// <param name="chapterSectionId">章节id</param>
+        /// <param name="courseId">课程id</param>
         /// <returns></returns>
         [HttpPost]
-        [Route("GetQuestionsByExamId")]
-        public List<QuestionModel> GetQuestionsByExamId(string examId)
+        [Route("GetQuestionsByChapterSectionId")]
+        public List<QuestionModel> GetQuestionsByChapterSectionId(string chapterSectionId, string courseId)
         {
-            var list = _questionService.GetQuestionsByExamId(examId);
-            return null;
-            //return _examService.GetExamsByCourseId(courseId);
+            List<QuestionModel> _questionModels = null;
+            var questionList = _questionService.GetQuestionsByChapterSectionId(chapterSectionId);
+            //前期先获取所有的试题选项-后期优化请根据课程获取试题选项在和试题匹配
+            var questionOptionList = _questionOptionService.GetQuestionOptionsByCourseId(courseId);
+            if (questionList.Count > 0)
+            {
+                _questionModels = new List<QuestionModel>();
+                foreach (var que in questionList)
+                {
+                    //获取每个试题的选项
+                    var questionOption = questionOptionList.Where(d => d.QuestionId == que.QuestionId).OrderBy(d => d.OptionId).ToList();
+                    //整合试题
+                    var questionModel = new QuestionModel()
+                    {
+                        Analysis = que.Analysis,
+                        Answer = que.Answer,
+                        CategoryId = que.CategoryId,
+                        ExamId = que.ExamId,
+                        //KeyGuid = que.KeyGuid,
+                        CourseId = que.CourseId,
+                        PageURL = que.PageURL,
+                        QuestionId = que.QuestionId,
+                        //Score = que.Score,
+                        //SortIndex = que.SortIndex,
+                        Title = que.Title,
+                        TitleTopic = que.TitleTopic,
+                        TopicId = que.TopicId,
+                        TypeId = que.TypeId,
+                        Video = que.Video
+                    };
+                    var _1uestionOptionModels = new List<QuestionOptionModel>();
+                    if (questionOption.Count > 0)
+                    {
+                        foreach (var _queoption in questionOption)
+                        {
+                            var questionOptionModel = new QuestionOptionModel()
+                            {
+                                OptionId = _queoption.OptionId,
+                                OptionName = _queoption.OptionName,
+                                QuestionId = _queoption.QuestionId
+                            };
+                            _1uestionOptionModels.Add(questionOptionModel);
+                        }
+                    }
+                    questionModel.QuestionOptionModels = _1uestionOptionModels;
+                    _questionModels.Add(questionModel);
+                }
+            }
+            return _questionModels;
         }
+
+        /// <summary>
+        /// 模拟考试根据试卷id获取试题及选项
+        /// </summary>
+        /// <param name="examId">试卷id</param>
+        /// <returns></returns>
+        //[HttpPost]
+        //[Route("GetQuestionsByExamId")]
+        //public List<QuestionModel> GetQuestionsByExamId(string examId)
+        //{
+        //    List<QuestionModel> _questionModels = null;
+        //    var questionList = _questionService.GetQuestionsByExamId(examId);
+        //    //前期先获取所有的试题选项-后期优化请根据课程获取试题选项在和试题匹配
+        //    var questionOptionList = _questionOptionService.GetAllQuestionOptions();
+        //    if(questionList.Count > 0)
+        //    {
+        //        _questionModels = new List<QuestionModel>();
+        //        foreach (var que in questionList)
+        //        {
+        //            //获取每个试题的选项
+        //            var questionOption = questionOptionList.Where(d => d.QuestionId == que.QuestionId).OrderBy(d => d.OptionId).ToList();
+        //            //整合试题
+        //            var questionModel = new QuestionModel()
+        //            {
+        //                //Analysis = que.Analysis,
+        //                //Answer = que.Answer,
+        //                CategoryId = que.CategoryId,
+        //                ExamId = que.ExamId,
+        //                //KeyGuid = que.KeyGuid,
+        //                CourseId = que.CourseId,
+        //                PageURL = que.PageURL,
+        //                QuestionId = que.QuestionId,
+        //                //Score = que.Score,
+        //                //SortIndex = que.SortIndex,
+        //                Title = que.Title,
+        //                TitleTopic = que.TitleTopic,
+        //                TopicId = que.TopicId,
+        //                TypeId = que.TypeId,
+        //                Video = que.Video
+        //            };
+        //            var _1uestionOptionModels = new List<QuestionOptionModel>();
+        //            if (questionOption.Count > 0)
+        //            {
+        //                foreach (var _queoption in questionOption)
+        //                {
+        //                    var questionOptionModel = new QuestionOptionModel()
+        //                    {
+        //                        OptionId = _queoption.OptionId,
+        //                        OptionName = _queoption.OptionName,
+        //                        QuestionId = _queoption.QuestionId
+        //                    };
+        //                    _1uestionOptionModels.Add(questionOptionModel);
+        //                }
+        //            }
+        //            questionModel.QuestionOptionModels = _1uestionOptionModels;
+        //            _questionModels.Add(questionModel);
+        //        }
+        //    }
+        //    return _questionModels;
+        //}
     }
 }

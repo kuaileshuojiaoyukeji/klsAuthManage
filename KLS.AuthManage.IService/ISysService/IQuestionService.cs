@@ -11,10 +11,17 @@ namespace KLS.AuthManage.IService.ISysService
     public interface IQuestionService
     {
         /// <summary>
-        /// 根据章节id也是试卷id获取试题
+        /// 根据试卷id获取试题==模拟考试
         /// </summary>
-        /// <param name="examId">章节id</param>
+        /// <param name="examId">试卷id</param>
         /// <returns></returns>
         List<Question> GetQuestionsByExamId(string examId);
+
+        /// <summary>
+        /// 根据章节id获取试题==练习
+        /// </summary>
+        /// <param name="chapterSectionId"></param>
+        /// <returns></returns>
+        List<Question> GetQuestionsByChapterSectionId(string chapterSectionId);
     }
 }

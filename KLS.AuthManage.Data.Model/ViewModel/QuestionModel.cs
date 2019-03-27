@@ -28,11 +28,11 @@ namespace KLS.AuthManage.Data.Model.ViewModel
 
         public string Analysis { get; set; }
 
-        public double? Score { get; set; }
+        //public double? Score { get; set; }
 
-        public int SortIndex { get; set; }
+        //public int SortIndex { get; set; }
 
-        public string KeyGuid { get; set; }
+        //public string KeyGuid { get; set; }
 
         public string Video { get; set; }
 

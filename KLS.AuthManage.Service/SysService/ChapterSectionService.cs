@@ -12,6 +12,7 @@ namespace KLS.AuthManage.Service.SysService
     public class ChapterSectionService : IChapterSectionService
     {
         private readonly IDbServiceReposity _dbServiceReposity;
+        
         public ChapterSectionService(IDbServiceReposity dbServiceReposity)
         {
             _dbServiceReposity = dbServiceReposity;

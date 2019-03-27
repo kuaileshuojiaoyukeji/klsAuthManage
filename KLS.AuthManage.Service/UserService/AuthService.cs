@@ -26,6 +26,12 @@ namespace KLS.AuthManage.Service.UserService
             return user;
         }
 
+        public async Task<bool> UpdateUserPwAsync(int userId, string oldPassword, string newPassword)
+        {
+            var result = await _userManager.ChangePasswordAsync(userId, oldPassword, newPassword);
+            return result.Succeeded;
+        }
+
         public async Task<User> FindUserByName(string uName)
         {
             User user = await _userManager.FindByNameAsync(uName);
