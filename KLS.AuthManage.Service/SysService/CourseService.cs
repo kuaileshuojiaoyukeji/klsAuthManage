@@ -22,6 +22,14 @@ namespace KLS.AuthManage.Service.SysService
             return _dbServiceReposity.Where<Course>(d => d.CertId == certId).ToList();
         }
 
+        /// <summary>
+        /// 这是一个有效率的分页可做参照
+        /// 后期可使用存储过程分页或者其他如缓存来提高效率
+        /// </summary>
+        /// <param name="certId"></param>
+        /// <param name="pageIndex"></param>
+        /// <param name="pagesize"></param>
+        /// <returns></returns>
         public List<Course> GetCoursesByCertificateIdSql(string certId, int pageIndex, int pagesize)
         {
             string strSQL = string.Format(@"SELECT * FROM 
