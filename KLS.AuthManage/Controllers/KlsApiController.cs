@@ -63,9 +63,9 @@ namespace KLS.AuthManage.Controllers
         /// <returns></returns>
         [HttpPost]
         [Route("GetCoursesByCertificateId")]
-        public List<Course> GetCoursesByCertificateId(string certificateId)
+        public List<Course> GetCoursesByCertificateId(string certificateId, int pageIndex, int pagesize = 20)
         {
-            return _courseService.GetCoursesByCertificateId(certificateId);
+            return _courseService.GetCoursesByCertificateId(certificateId).Take(pagesize * pageIndex).Skip(pagesize * (pageIndex - 1)).ToList();
         }
 
         /// <summary>
@@ -126,12 +126,12 @@ namespace KLS.AuthManage.Controllers
         /// </summary>
         /// <param name="chapterSectionId">章节id</param>
         /// <returns></returns>
-        [HttpPost]
-        [Route("GetExamsByChapterSectionId")]
-        public List<Exam> GetExamsByChapterSectionId(string chapterSectionId)
-        {
-            return _examService.GetExamsByChapterSectionId(chapterSectionId);
-        }
+        //[HttpPost]
+        //[Route("GetExamsByChapterSectionId")]
+        //public List<Exam> GetExamsByChapterSectionId(string chapterSectionId, int pageIndex, int pagesize = 20)
+        //{
+        //    return _examService.GetExamsByChapterSectionId(chapterSectionId).Take(pagesize * pageIndex).Skip(pagesize * (pageIndex - 1)).ToList();
+        //}
 
         /// <summary>
         /// 根据课程id获取对应的试卷
@@ -140,9 +140,9 @@ namespace KLS.AuthManage.Controllers
         /// <returns></returns>
         [HttpPost]
         [Route("GetExamsByCourseId")]
-        public List<Exam> GetExamsByCourseId(string courseId)
+        public List<Exam> GetExamsByCourseId(string courseId, int pageIndex, int pagesize = 20)
         {
-            return _examService.GetExamsByCourseId(courseId);
+            return _examService.GetExamsByCourseId(courseId).Take(pagesize * pageIndex).Skip(pagesize * (pageIndex - 1)).ToList(); ;
         }
 
         /// <summary>

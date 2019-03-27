@@ -12,5 +12,6 @@ namespace KLS.AuthManage.Controllers
     //基类Controller
     public class BaseController : ApiController
     {
+        public readonly int PAGE_SIZE = 20;
     }
 }
