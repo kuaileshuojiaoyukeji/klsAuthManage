@@ -14,5 +14,10 @@ namespace KLS.AuthManage.Component.Tools.Helpers
         {
             return Convert.ToInt32(ConfigurationManager.AppSettings[EnumGlobalConfig.SessionTimeOut.ToString()].ToString());
         }
+
+        public static string GetVideoUrlRoot()
+        {
+            return ConfigurationManager.AppSettings[EnumGlobalConfig.VideoUrlRoot.ToString()].ToString();
+        }
     }
 }

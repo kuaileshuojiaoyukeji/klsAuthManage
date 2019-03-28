@@ -10,6 +10,8 @@ namespace KLS.AuthManage.Component.Tools.EnumConfigs
     public enum EnumGlobalConfig
     {
         [Description("Session超时")]
-        SessionTimeOut
+        SessionTimeOut,
+        [Description("学习视频UrlRoot")]
+        VideoUrlRoot
     }
 }

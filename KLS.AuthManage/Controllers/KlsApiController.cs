@@ -11,6 +11,9 @@ using System.Web.Http;
 
 namespace KLS.AuthManage.Controllers
 {
+    /// <summary>
+    /// 快乐说对外接口
+    /// </summary>
     //[Authorize]
     [AllowAnonymous]
     [RoutePrefix("api/v1/KlsApi")]
