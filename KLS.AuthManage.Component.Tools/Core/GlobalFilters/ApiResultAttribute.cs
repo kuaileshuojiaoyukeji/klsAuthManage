@@ -84,8 +84,8 @@ namespace KLS.AuthManage.Component.Tools.Core.GlobalFilters
             HttpResponseMessage httpResponseMessage = JsonHelper.ToJsonResult(result);
             // 重新封装回传格式
             actionExecutedContext.Response = httpResponseMessage;
-            var MiniProfilerJson = JsonConvert.SerializeObject(new[] { MiniProfiler.Current.Id });
-            actionExecutedContext.Response.Content.Headers.Add(MiniProfilerResultsHeaderName, MiniProfilerJson);
+            //var MiniProfilerJson = JsonConvert.SerializeObject(new[] { MiniProfiler.Current.Id });
+            //actionExecutedContext.Response.Content.Headers.Add(MiniProfilerResultsHeaderName, MiniProfilerJson);
         }
 
         public override void OnActionExecuting(System.Web.Http.Controllers.HttpActionContext actionContext)
