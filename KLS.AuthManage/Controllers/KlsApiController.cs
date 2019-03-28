@@ -290,5 +290,12 @@ namespace KLS.AuthManage.Controllers
         //    }
         //    return _questionModels;
         //}
+
+        [HttpPost]
+        [Route("test")]
+        public string test()
+        {
+            return "test";
+        }
     }
 }
