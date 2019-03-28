@@ -1,4 +1,5 @@
-﻿using KLS.AuthManage.Data.Model.SysModel;
+﻿using KLS.AuthManage.Component.Tools.Helpers;
+using KLS.AuthManage.Data.Model.SysModel;
 using KLS.AuthManage.Data.Model.ViewModel;
 using KLS.AuthManage.IService.ISysService;
 using KLS.AuthManage.IService.IUserService;
@@ -34,9 +35,11 @@ namespace KLS.AuthManage.Controllers
         [Route("GetStrings")]
         public string GetStrings()
         {
+            LogHelper.LogInfo("a6");
             string userId = User.Identity.GetUserName();
-            int id = User.Identity.GetUserId<int>();
-            return userId + id.ToString();
+            LogHelper.LogInfo("a7");
+            //int id = User.Identity.GetUserId<int>();
+            return "";
         }
 
         /// <summary>

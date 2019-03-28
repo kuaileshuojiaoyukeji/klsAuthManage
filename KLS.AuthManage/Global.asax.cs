@@ -1,5 +1,6 @@
 ﻿using KLS.AuthManage.Component.Tools.Core.GlobalFilters;
 using KLS.AuthManage.Component.Tools.Core.Initialize;
+using KLS.AuthManage.Component.Tools.Helpers;
 using StackExchange.Profiling;
 using StackExchange.Profiling.EntityFramework6;
 using System;
@@ -29,13 +30,17 @@ namespace KLS.AuthManage
 
         protected void Application_BeginRequest()
         {
+            LogHelper.LogInfo("5");
             if (Request.IsLocal)
             {
+                LogHelper.LogInfo("6");
                 MiniProfiler.Start();
+                LogHelper.LogInfo("7");
             }
         }
         protected void Application_EndRequest()
         {
+            LogHelper.LogInfo("8");
             MiniProfiler.Stop();
         }
     }

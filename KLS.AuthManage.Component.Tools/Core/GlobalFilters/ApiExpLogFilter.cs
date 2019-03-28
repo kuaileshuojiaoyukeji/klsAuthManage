@@ -17,6 +17,7 @@ namespace KLS.AuthManage.Component.Tools.Core.GlobalFilters
         protected string _errorMsg = string.Empty;
         public override void OnException(ExceptionContext filterContext)
         {
+            LogHelper.LogInfo("1");
             base.OnException(filterContext);
             var exception = filterContext.Exception;
             string sbExMsg = ExceptionExt.ExceptionMsg(exception);

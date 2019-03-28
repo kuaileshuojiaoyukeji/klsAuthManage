@@ -25,6 +25,7 @@ namespace KLS.AuthManage.Component.Tools.Core.GlobalFilters
         public const string MiniProfilerResultsHeaderName = "X-MiniProfiler-Ids";
         public override void OnActionExecuted(HttpActionExecutedContext actionExecutedContext)
         {
+            LogHelper.LogInfo("b1");
             base.OnActionExecuted(actionExecutedContext);
             #region Log01 接口被访问记录
             //log01 type=file
@@ -41,6 +42,7 @@ namespace KLS.AuthManage.Component.Tools.Core.GlobalFilters
             #endregion
             //初始化返回结果
             result = new AuthManage.Data.Model.Member.ResultModel();
+            LogHelper.LogInfo("b2");
             if (actionExecutedContext.Exception != null)
             {
                 _errorMsg = "请查看错误日志";
@@ -69,30 +71,44 @@ namespace KLS.AuthManage.Component.Tools.Core.GlobalFilters
             else
             {
                 // 取得由 API 返回的状态代码
+                LogHelper.LogInfo("b3");
                 result.StatusCode = actionExecutedContext.ActionContext.Response.StatusCode;
+                LogHelper.LogInfo("b4");
                 var a = actionExecutedContext.ActionContext.Response.Content.ReadAsAsync<object>();
                 if (!a.IsFaulted)
                 {
+                    LogHelper.LogInfo("b5");
                     // 取得由 API 返回的资料
                     result.Data = actionExecutedContext.ActionContext.Response.Content.ReadAsAsync<object>().Result;
+                    LogHelper.LogInfo("b6");
                 }
                 //请求是否成功
                 result.IsSuccess = actionExecutedContext.ActionContext.Response.IsSuccessStatusCode;
+                LogHelper.LogInfo("b7");
                 result.ErrorMsg = "";
+                LogHelper.LogInfo("b8");
             }
             //结果转为自定义消息格式
+            LogHelper.LogInfo("b9");
             HttpResponseMessage httpResponseMessage = JsonHelper.ToJsonResult(result);
+            LogHelper.LogInfo("b10");
             // 重新封装回传格式
             actionExecutedContext.Response = httpResponseMessage;
-            var MiniProfilerJson = JsonConvert.SerializeObject(new[] { MiniProfiler.Current.Id });
-            actionExecutedContext.Response.Content.Headers.Add(MiniProfilerResultsHeaderName, MiniProfilerJson);
+            LogHelper.LogInfo("b11");
+            //var MiniProfilerJson = JsonConvert.SerializeObject(new[] { MiniProfiler.Current.Id });
+            //LogHelper.LogInfo("b12");
+            //actionExecutedContext.Response.Content.Headers.Add(MiniProfilerResultsHeaderName, MiniProfilerJson);
+            //LogHelper.LogInfo("b13");
         }
 
         public override void OnActionExecuting(System.Web.Http.Controllers.HttpActionContext actionContext)
         {
+            LogHelper.LogInfo("a2");
             var noPackage = actionContext.ActionDescriptor.GetCustomAttributes<UnResultAttribute>();
+            LogHelper.LogInfo("a3");
             if (!noPackage.Any())
             {
+                LogHelper.LogInfo("a4");
                 var modelState = actionContext.ModelState;
                 if (!modelState.IsValid)
                 {
@@ -125,6 +141,7 @@ namespace KLS.AuthManage.Component.Tools.Core.GlobalFilters
                             };
                             HttpResponseMessage httpResponseMessage = JsonHelper.ToJsonResult(result);
                             actionContext.Response = httpResponseMessage;
+                            LogHelper.LogInfo("a5");
                             break;
                         }
                     }

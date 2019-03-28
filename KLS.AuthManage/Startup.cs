@@ -24,11 +24,14 @@ namespace KLS.AuthManage
         public static string PublicClientId { get; private set; }
         public void Configuration(IAppBuilder app)
         {
+            LogHelper.LogInfo("17");
             RegisterAutofacForSingle.RegisterAutofac(app);
             ConfigureAuth(app);
+            LogHelper.LogInfo("18");
             DatabaseInitializer.Initialize();
             string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["DefaultContext"].ToString();
             System.Data.SqlClient.SqlDependency.Start(connectionString);
+            LogHelper.LogInfo("20");
         }
 
         public void ConfigureAuth(IAppBuilder app)
@@ -59,7 +62,7 @@ namespace KLS.AuthManage
                 }
             });
             app.UseExternalSignInCookie(DefaultAuthenticationTypes.ExternalCookie);
-
+            LogHelper.LogInfo("19");
             // 使应用程序可以在双重身份验证过程中验证第二因素时暂时存储用户信息。
             app.UseTwoFactorSignInCookie(DefaultAuthenticationTypes.TwoFactorCookie, TimeSpan.FromMinutes(5));
 

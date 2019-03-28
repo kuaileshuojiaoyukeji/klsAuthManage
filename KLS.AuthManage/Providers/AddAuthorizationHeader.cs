@@ -18,6 +18,7 @@ namespace KLS.AuthManage.Providers
         /// <param name="apiDescription">The Swashbuckle api description.</param>
         public void Apply(Operation operation, SchemaRegistry schemaRegistry, ApiDescription apiDescription)
         {
+
             if (operation == null) return;
             if (operation.parameters == null)
             {

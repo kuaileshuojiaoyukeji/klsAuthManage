@@ -4,6 +4,7 @@ using Autofac.Integration.WebApi;
 using KLS.AuthManage.Component.Data.Context;
 using KLS.AuthManage.Component.Data.DbService;
 using KLS.AuthManage.Component.Tools.Configs;
+using KLS.AuthManage.Component.Tools.Helpers;
 using KLS.AuthManage.Data.Model.Member;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
@@ -56,6 +57,7 @@ namespace KLS.AuthManage.RegisterAutofac
             var container = builder.Build();
             GlobalConfiguration.Configuration.DependencyResolver = new AutofacWebApiDependencyResolver(container);
             DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
+            LogHelper.LogInfo("完成IOC");
         }
     }
 }

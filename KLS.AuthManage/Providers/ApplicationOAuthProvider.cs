@@ -75,33 +75,43 @@ namespace KLS.AuthManage.Providers
 
         public override Task TokenEndpoint(OAuthTokenEndpointContext context)
         {
+            LogHelper.LogInfo("15");
             foreach (KeyValuePair<string, string> property in context.Properties.Dictionary)
             {
+                LogHelper.LogInfo("16");
                 context.AdditionalResponseParameters.Add(property.Key, property.Value);
             }
             //context.AdditionalResponseParameters.Add("ID", context.Identity.GetUserId<int>().ToString());
+            LogHelper.LogInfo("17");
             return Task.FromResult<object>(null);
         }
 
         public override Task ValidateClientAuthentication(OAuthValidateClientAuthenticationContext context)
         {
+            LogHelper.LogInfo("12");
             if (context.ClientId == null)
             {
+                LogHelper.LogInfo("13");
                 context.Validated();
             }
+            LogHelper.LogInfo("14");
             return Task.FromResult<object>(null);
         }
 
         public override Task ValidateClientRedirectUri(OAuthValidateClientRedirectUriContext context)
         {
+            LogHelper.LogInfo("0");
             if (context.ClientId == _publicClientId)
             {
+                LogHelper.LogInfo("9");
                 Uri expectedRootUri = new Uri(context.Request.Uri, "/");
                 if (expectedRootUri.AbsoluteUri == context.RedirectUri)
                 {
+                    LogHelper.LogInfo("10");
                     context.Validated();
                 }
             }
+            LogHelper.LogInfo("11");
             return Task.FromResult<object>(null);
         }
 
