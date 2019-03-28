@@ -85,6 +85,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="HzwxService\ScanVideoService.cs" />
+    <Compile Include="HzwxService\VideoExamService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SysService\CertificateService.cs" />
     <Compile Include="SysService\ChapterSectionService.cs" />

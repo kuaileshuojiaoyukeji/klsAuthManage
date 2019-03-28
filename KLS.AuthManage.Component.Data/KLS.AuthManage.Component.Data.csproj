@@ -92,6 +92,7 @@
     <Compile Include="Context\ConnectionStringContext.cs" />
     <Compile Include="Context\Course.cs" />
     <Compile Include="Context\CourseQuestionType.cs" />
+    <Compile Include="Context\EFhzwxdb.cs" />
     <Compile Include="Context\EFQuestion.cs" />
     <Compile Include="Context\Exam.cs" />
     <Compile Include="Context\ExamScheme.cs" />
@@ -99,8 +100,12 @@
     <Compile Include="Context\question.cs" />
     <Compile Include="Context\QuestionOption.cs" />
     <Compile Include="Context\QuestionType.cs" />
+    <Compile Include="Context\ScanVideo.cs" />
+    <Compile Include="Context\VideoExam.cs" />
     <Compile Include="DbService\DbServiceReposity.cs" />
+    <Compile Include="DbService\HDbServiceReposity.cs" />
     <Compile Include="DbService\IDbServiceReposity.cs" />
+    <Compile Include="DbService\IHDbServiceReposity.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

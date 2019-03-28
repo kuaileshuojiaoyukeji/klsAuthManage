@@ -54,6 +54,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IHzwxService\IScanVideoService.cs" />
+    <Compile Include="IHzwxService\IVideoExamService.cs" />
     <Compile Include="ISysService\ICertificateService.cs" />
     <Compile Include="ISysService\IChapterSectionService.cs" />
     <Compile Include="ISysService\ICourseService.cs" />

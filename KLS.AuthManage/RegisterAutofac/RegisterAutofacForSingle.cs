@@ -28,7 +28,7 @@ namespace KLS.AuthManage.RegisterAutofac
             var assembly = Assembly.GetExecutingAssembly();
 
             builder.Register(o => new DbServiceReposity(new EFQuestion())).As<IDbServiceReposity>().InstancePerLifetimeScope();
-
+            builder.Register(o => new HDbServiceReposity(new EFhzwxdb())).As<IHDbServiceReposity>().InstancePerLifetimeScope();
             builder.RegisterApiControllers(Assembly.GetExecutingAssembly());
             builder.RegisterFilterProvider(); //开启了Filter的依赖注入功能，为过滤器使用属性注入必须在容器创建之前调用RegisterFilterProvider方法，并将其传到AutofacDependencyResolver
             builder.RegisterType<ApplicationUserStore>().As<IUserStore<User, int>>().InstancePerRequest();

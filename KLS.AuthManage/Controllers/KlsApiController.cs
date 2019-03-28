@@ -1,5 +1,6 @@
 ﻿using KLS.AuthManage.Component.Data.Context;
 using KLS.AuthManage.Data.Model.ViewModel;
+using KLS.AuthManage.IService.IHzwxService;
 using KLS.AuthManage.IService.ISysService;
 using Microsoft.AspNet.Identity;
 using System;
@@ -25,8 +26,10 @@ namespace KLS.AuthManage.Controllers
         private readonly IExamService _examService;
         private readonly IQuestionService _questionService;
         private readonly IQuestionOptionService _questionOptionService;
+        private readonly IScanVideoService _scanVideoService;
+        private readonly IVideoExamService _videoExamService;
 
-        public KlsApiController(IQuestionOptionService questionOptionService, IQuestionService questionService, IExamService examService, IChapterSectionService chapterSectionService, ICourseService courseService, ICertificateService certificateService)
+        public KlsApiController(IScanVideoService scanVideoService, IVideoExamService videoExamService,IQuestionOptionService questionOptionService, IQuestionService questionService, IExamService examService, IChapterSectionService chapterSectionService, ICourseService courseService, ICertificateService certificateService)
         {
             _certificateService = certificateService;
             _courseService = courseService;
@@ -34,6 +37,8 @@ namespace KLS.AuthManage.Controllers
             _examService = examService;
             _questionOptionService = questionOptionService;
             _questionService = questionService;
+            _scanVideoService = scanVideoService;
+            _videoExamService = videoExamService;
         }
 
         /// <summary>
@@ -63,12 +68,33 @@ namespace KLS.AuthManage.Controllers
         /// 根据科目id获取对应课程列表
         /// </summary>
         /// <param name="certificateId"></param>
+        /// <param name="pageIndex">当前页</param>
+        /// <param name="pageSize">每页数量</param>
         /// <returns></returns>
         [HttpPost]
         [Route("GetCoursesByCertificateId")]
-        public List<Course> GetCoursesByCertificateId(string certificateId, int pageIndex, int pagesize = 20)
+        public List<Course> GetCoursesByCertificateId(string certificateId, int pageIndex, int pageSize = 20)
         {
-            return _courseService.GetCoursesByCertificateId(certificateId).Take(pagesize * pageIndex).Skip(pagesize * (pageIndex - 1)).ToList();
+            return _courseService.GetCoursesByCertificateId(certificateId).Take(pageSize * pageIndex).Skip(pageSize * (pageIndex - 1)).ToList();
+        }
+
+        /// <summary>
+        /// 获取视频连接需要的参数拼装完整url
+        /// </summary>
+        /// <param name="chapSecId">章节id</param>
+        /// <param name="videoExams">课程下的videoExam</param>
+        /// <returns></returns>
+        private string GetVideoUrl(string chapSecId, List<VideoExam> videoExams)
+        {
+            var videoExam = videoExams.Where(d => d.ChapSecId == chapSecId).FirstOrDefault();
+            if (videoExam != null)
+            {
+                string tencentId = _scanVideoService.GetScanVideoByHZCourseID((int)videoExam.HZCourseID).TencentID;
+                int courseVideoID = (int)videoExam.CourseVideoID;
+                string tempUrl = "?chapsecid={0}&examid=&id={1}&coursevideoid={2}";
+                return VideoUrlRoot + string.Format(tempUrl, chapSecId, tencentId, courseVideoID);
+            }
+            return "";
         }
 
         /// <summary>
@@ -87,19 +113,17 @@ namespace KLS.AuthManage.Controllers
             var chapterSectionModels = new List<ChapterSectionModel>();
             if (fatherChapterSections.Count > 0)
             {
+                //获得课程下的VideoExam
+                var videoExams = _videoExamService.GetVideoExamByCourseId(courseId);
                 foreach (var chapterSection in fatherChapterSections)
                 {
                     var chapterSectionModel = new ChapterSectionModel
                     {
                         ChapSecId = chapterSection.ChapSecId,
                         ChapSecName = chapterSection.ChapSecName,
-                        CourseId = chapterSection.CourseId,
-                        ItemCount = chapterSection.ItemCount,
-                        LevelIndex = chapterSection.LevelIndex,
-                        ParentId = chapterSection.ParentId,
-                        SortIndex = chapterSection.SortIndex,
-                        TrialUsed = chapterSection.TrialUsed
+                        CourseId = chapterSection.CourseId
                     };
+                    
                     //获取章下的节并排序
                     var childlist = (from l in _list
                                      where l.ParentId == chapterSection.ChapSecId
@@ -110,11 +134,7 @@ namespace KLS.AuthManage.Controllers
                                          ChapSecId = l.ChapSecId,
                                          ChapSecName = l.ChapSecName,
                                          CourseId = l.CourseId,
-                                         ItemCount = l.ItemCount,
-                                         LevelIndex = l.LevelIndex,
-                                         ParentId = l.ParentId,
-                                         SortIndex = l.SortIndex,
-                                         TrialUsed = l.TrialUsed
+                                         VideoUrl = GetVideoUrl(l.ChapSecId, videoExams)
                                      }).ToList();
 
                     chapterSectionModel.ChapterSectionModels = childlist;
@@ -140,12 +160,14 @@ namespace KLS.AuthManage.Controllers
         /// 根据课程id获取对应的试卷
         /// </summary>
         /// <param name="courseId">课程id</param>
+        /// <param name="pageIndex">当前页</param>
+        /// <param name="pageSize">每页数量</param>
         /// <returns></returns>
         [HttpPost]
         [Route("GetExamsByCourseId")]
-        public List<Exam> GetExamsByCourseId(string courseId, int pageIndex, int pagesize = 20)
+        public List<Exam> GetExamsByCourseId(string courseId, int pageIndex, int pageSize = 20)
         {
-            return _examService.GetExamsByCourseId(courseId).Take(pagesize * pageIndex).Skip(pagesize * (pageIndex - 1)).ToList(); ;
+            return _examService.GetExamsByCourseId(courseId).Take(pageSize * pageIndex).Skip(pageSize * (pageIndex - 1)).ToList();
         }
 
         /// <summary>

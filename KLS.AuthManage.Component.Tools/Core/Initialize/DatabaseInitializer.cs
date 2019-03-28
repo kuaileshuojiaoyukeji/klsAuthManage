@@ -17,6 +17,10 @@ namespace KLS.AuthManage.Component.Tools.Core.Initialize
             {
                 db.Database.Initialize(false);
             }
+            using (var _db = new EFhzwxdb())
+            {
+                _db.Database.Initialize(false);
+            }
         }
     }
 }

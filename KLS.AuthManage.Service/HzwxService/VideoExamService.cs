@@ -11,9 +11,9 @@ namespace KLS.AuthManage.Service.HzwxService
 {
     public class VideoExamService : IVideoExamService
     {
-        private readonly IDbServiceReposity _dbServiceReposity;
+        private readonly IHDbServiceReposity _dbServiceReposity;
 
-        public VideoExamService(IDbServiceReposity dbServiceReposity)
+        public VideoExamService(IHDbServiceReposity dbServiceReposity)
         {
             _dbServiceReposity = dbServiceReposity;
         }

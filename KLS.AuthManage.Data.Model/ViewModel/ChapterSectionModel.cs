@@ -14,15 +14,16 @@ namespace KLS.AuthManage.Data.Model.ViewModel
 
         public string CourseId { get; set; }
 
-        public string ParentId { get; set; }
+        public string VideoUrl { get; set; }
+        //public string ParentId { get; set; }
 
-        public int LevelIndex { get; set; }
+        //public int LevelIndex { get; set; }
 
-        public bool TrialUsed { get; set; }
+        //public bool TrialUsed { get; set; }
 
-        public int SortIndex { get; set; }
+        //public int SortIndex { get; set; }
 
-        public int? ItemCount { get; set; }
+        //public int? ItemCount { get; set; }
 
         public List<ChapterSectionModel> ChapterSectionModels { get; set; }
     }
