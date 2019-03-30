@@ -133,7 +133,6 @@ namespace KLS.AuthManage.Component.Tools.Core.GlobalFilters
                     }
                 }
             }
-            
         }
     }
 }
