@@ -19,5 +19,10 @@ namespace KLS.AuthManage.Component.Tools.Helpers
         {
             return ConfigurationManager.AppSettings[EnumGlobalConfig.VideoUrlRoot.ToString()].ToString();
         }
+
+        public static string GetSqlListen()
+        {
+            return ConfigurationManager.AppSettings[EnumGlobalConfig.SqlListen.ToString()].ToString();
+        }
     }
 }
