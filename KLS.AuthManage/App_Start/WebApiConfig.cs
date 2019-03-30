@@ -14,7 +14,7 @@ namespace KLS.AuthManage
             // Web API 配置和服务
             // Web API 路由
             config.MapHttpAttributeRoutes();
-            config.Filters.Add(new AuthorizeFilter());
+            //config.Filters.Add(new AuthorizeFilter());
             config.Filters.Add(new ApiResultAttribute());
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
