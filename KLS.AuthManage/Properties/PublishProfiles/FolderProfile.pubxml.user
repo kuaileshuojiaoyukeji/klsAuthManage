@@ -115,13 +115,13 @@
       <publishTime>03/28/2019 17:23:20</publishTime>
     </File>
     <File Include="bin/KLS.AuthManage.Component.Tools.dll">
-      <publishTime>03/28/2019 17:23:20</publishTime>
+      <publishTime>03/30/2019 12:47:24</publishTime>
     </File>
     <File Include="bin/KLS.AuthManage.Component.Tools.dll.config">
       <publishTime>03/26/2019 13:15:14</publishTime>
     </File>
     <File Include="bin/KLS.AuthManage.Component.Tools.pdb">
-      <publishTime>03/28/2019 17:23:20</publishTime>
+      <publishTime>03/30/2019 12:47:24</publishTime>
     </File>
     <File Include="bin/KLS.AuthManage.Data.Model.dll">
       <publishTime>03/28/2019 17:23:20</publishTime>
@@ -133,7 +133,7 @@
       <publishTime>03/28/2019 17:23:20</publishTime>
     </File>
     <File Include="bin/KLS.AuthManage.dll">
-      <publishTime>03/30/2019 09:01:07</publishTime>
+      <publishTime>03/30/2019 13:02:13</publishTime>
     </File>
     <File Include="bin/KLS.AuthManage.IService.dll">
       <publishTime>03/28/2019 17:23:20</publishTime>
@@ -145,16 +145,16 @@
       <publishTime>03/28/2019 17:23:20</publishTime>
     </File>
     <File Include="bin/KLS.AuthManage.pdb">
-      <publishTime>03/30/2019 09:01:07</publishTime>
+      <publishTime>03/30/2019 13:02:13</publishTime>
     </File>
     <File Include="bin/KLS.AuthManage.Service.dll">
-      <publishTime>03/28/2019 17:23:20</publishTime>
+      <publishTime>03/30/2019 12:47:24</publishTime>
     </File>
     <File Include="bin/KLS.AuthManage.Service.dll.config">
       <publishTime>03/27/2019 09:55:13</publishTime>
     </File>
     <File Include="bin/KLS.AuthManage.Service.pdb">
-      <publishTime>03/28/2019 17:23:20</publishTime>
+      <publishTime>03/30/2019 12:47:24</publishTime>
     </File>
     <File Include="bin/KLS.AuthManage.xml">
       <publishTime>03/28/2019 17:22:56</publishTime>
@@ -460,7 +460,7 @@
       <publishTime>03/18/2019 10:10:41</publishTime>
     </File>
     <File Include="bin/System.Web.Cors.dll">
-      <publishTime>03/18/2019 10:10:37</publishTime>
+      <publishTime>03/30/2019 12:47:13</publishTime>
     </File>
     <File Include="bin/System.Web.Helpers.dll">
       <publishTime>03/18/2019 10:10:37</publishTime>
@@ -628,7 +628,7 @@
       <publishTime>03/18/2019 10:10:36</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>03/28/2019 17:23:21</publishTime>
+      <publishTime>03/30/2019 12:47:25</publishTime>
     </File>
   </ItemGroup>
 </Project>
