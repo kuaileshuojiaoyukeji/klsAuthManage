@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace KLS.AuthManage
 {
@@ -12,6 +13,9 @@ namespace KLS.AuthManage
         public static void Register(HttpConfiguration config)
         {
             // Web API 配置和服务
+            //config.SuppressDefaultHostAuthentication();
+            //跨域配置
+            //config.EnableCors();
             // Web API 路由
             config.MapHttpAttributeRoutes();
             //config.Filters.Add(new AuthorizeFilter());
